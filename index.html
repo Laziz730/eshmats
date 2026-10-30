@@ -1426,9 +1426,180 @@
 
     <!-- Interactive JavaScript Engine -->
     <script>
-        let channelVideos = [];
+        const DEFAULT_VIDEOS = [
+            {
+                id: "isQKSeC-_d4",
+                title: "Eshmat 100 yil uxlab, 2126-yilda uyg’ondi",
+                views: "4,400+",
+                viewsNum: 4400,
+                published: "2026-10-30T13:00:27+00:00",
+                category: "sarguzasht",
+                thumbnail: "https://i.ytimg.com/vi/isQKSeC-_d4/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/isQKSeC-_d4/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=isQKSeC-_d4",
+                embed: "https://www.youtube.com/embed/isQKSeC-_d4?autoplay=1&rel=0"
+            },
+            {
+                id: "U4tdt3bal2M",
+                title: "7 kun zombilar orasida: TOLIQ QISM",
+                views: "9,400+",
+                viewsNum: 9400,
+                published: "2026-10-29T13:00:13+00:00",
+                category: "sarguzasht",
+                thumbnail: "https://i.ytimg.com/vi/U4tdt3bal2M/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/U4tdt3bal2M/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=U4tdt3bal2M",
+                embed: "https://www.youtube.com/embed/U4tdt3bal2M?autoplay=1&rel=0"
+            },
+            {
+                id: "6A3-0M653Ec",
+                title: "Zombi apokalipsis: Eshmat omon qoladimi? (1-qism)",
+                views: "14,000+",
+                viewsNum: 14000,
+                published: "2026-10-28T14:00:05+00:00",
+                category: "sarguzasht",
+                thumbnail: "https://i.ytimg.com/vi/6A3-0M653Ec/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/6A3-0M653Ec/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=6A3-0M653Ec",
+                embed: "https://www.youtube.com/embed/6A3-0M653Ec?autoplay=1&rel=0"
+            },
+            {
+                id: "00VanskXM1o",
+                title: "Nafsining gapiga kirgan Eshmat",
+                views: "13,200+",
+                viewsNum: 13200,
+                published: "2026-10-27T14:00:33+00:00",
+                category: "ibratli",
+                thumbnail: "https://i.ytimg.com/vi/00VanskXM1o/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/00VanskXM1o/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=00VanskXM1o",
+                embed: "https://www.youtube.com/embed/00VanskXM1o?autoplay=1&rel=0"
+            },
+            {
+                id: "0YtBRd04UBM",
+                title: "Eshmat 30 kun Instagramsiz yashadi. Natija?",
+                views: "54,000+",
+                viewsNum: 54000,
+                published: "2026-10-26T14:00:33+00:00",
+                category: "sinov",
+                thumbnail: "https://i.ytimg.com/vi/0YtBRd04UBM/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/0YtBRd04UBM/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=0YtBRd04UBM",
+                embed: "https://www.youtube.com/embed/0YtBRd04UBM?autoplay=1&rel=0"
+            },
+            {
+                id: "3WEqhfFcj20",
+                title: "Sen hozir tovushdan tez uchyapsan! 🚀",
+                views: "5,000+",
+                viewsNum: 5000,
+                published: "2026-10-25T14:00:16+00:00",
+                category: "senariy",
+                thumbnail: "https://i.ytimg.com/vi/3WEqhfFcj20/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/3WEqhfFcj20/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=3WEqhfFcj20",
+                embed: "https://www.youtube.com/embed/3WEqhfFcj20?autoplay=1&rel=0"
+            },
+            {
+                id: "n4XHOBZwK6U",
+                title: "Nega o’zbeklar mehmonda doim “yeb keldim” deydi?",
+                views: "89,000+",
+                viewsNum: 89000,
+                published: "2026-10-25T14:00:02+00:00",
+                category: "ibratli",
+                thumbnail: "https://i.ytimg.com/vi/n4XHOBZwK6U/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/n4XHOBZwK6U/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=n4XHOBZwK6U",
+                embed: "https://www.youtube.com/embed/n4XHOBZwK6U?autoplay=1&rel=0"
+            },
+            {
+                id: "AMY0ggQAtM4",
+                title: "Agar internet 1 soniyaga o’chsa nima bo’ladi?",
+                views: "83,000+",
+                viewsNum: 83000,
+                published: "2026-10-23T14:00:33+00:00",
+                category: "senariy",
+                thumbnail: "https://i.ytimg.com/vi/AMY0ggQAtM4/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/AMY0ggQAtM4/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=AMY0ggQAtM4",
+                embed: "https://www.youtube.com/embed/AMY0ggQAtM4?autoplay=1&rel=0"
+            },
+            {
+                id: "5R0u-bFUN8U",
+                title: "Agar O’zbekistonda 7 kun svet bo’lmasa nima bo’ladi? ⭐",
+                views: "155,000+",
+                viewsNum: 155000,
+                published: "2026-10-22T14:00:16+00:00",
+                category: "sinov",
+                thumbnail: "https://i.ytimg.com/vi/5R0u-bFUN8U/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/5R0u-bFUN8U/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=5R0u-bFUN8U",
+                embed: "https://www.youtube.com/embed/5R0u-bFUN8U?autoplay=1&rel=0"
+            },
+            {
+                id: "sxQg_1w3vLQ",
+                title: "Suvsiz necha kun yashay olasan?",
+                views: "71,000+",
+                viewsNum: 71000,
+                published: "2026-10-21T14:00:27+00:00",
+                category: "sinov",
+                thumbnail: "https://i.ytimg.com/vi/sxQg_1w3vLQ/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/sxQg_1w3vLQ/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=sxQg_1w3vLQ",
+                embed: "https://www.youtube.com/embed/sxQg_1w3vLQ?autoplay=1&rel=0"
+            },
+            {
+                id: "F0xseFlPy0A",
+                title: "30 kun telefonsiz faqat kitob o’qisang nima bo’ladi",
+                views: "92,000+",
+                viewsNum: 92000,
+                published: "2026-10-20T14:00:36+00:00",
+                category: "sinov",
+                thumbnail: "https://i.ytimg.com/vi/F0xseFlPy0A/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/F0xseFlPy0A/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=F0xseFlPy0A",
+                embed: "https://www.youtube.com/embed/F0xseFlPy0A?autoplay=1&rel=0"
+            },
+            {
+                id: "QLbL6fhgNYg",
+                title: "Har kuni soat 4:00 da tursang nima bo’ladi?",
+                views: "503,000+",
+                viewsNum: 503000,
+                published: "2026-10-19T14:00:14+00:00",
+                category: "sinov",
+                thumbnail: "https://i.ytimg.com/vi/QLbL6fhgNYg/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/QLbL6fhgNYg/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=QLbL6fhgNYg",
+                embed: "https://www.youtube.com/embed/QLbL6fhgNYg?autoplay=1&rel=0"
+            },
+            {
+                id: "HWyEn0ej0ts",
+                title: "11-sinfda o’qish o’rniga Instagram ko’rgan Eshmat ⭐",
+                views: "90,000+",
+                viewsNum: 90000,
+                published: "2026-10-18T14:00:08+00:00",
+                category: "ibratli",
+                thumbnail: "https://i.ytimg.com/vi/HWyEn0ej0ts/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/HWyEn0ej0ts/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=HWyEn0ej0ts",
+                embed: "https://www.youtube.com/embed/HWyEn0ej0ts?autoplay=1&rel=0"
+            },
+            {
+                id: "FC2osgPbwjQ",
+                title: "11-sinfdan keyin Rossiyaga ketgan Eshmat | Hayotiy hikoya",
+                views: "93,000+",
+                viewsNum: 93000,
+                published: "2026-10-17T14:00:29+00:00",
+                category: "ibratli",
+                thumbnail: "https://i.ytimg.com/vi/FC2osgPbwjQ/hqdefault.jpg",
+                thumbnailMax: "https://i.ytimg.com/vi/FC2osgPbwjQ/maxresdefault.jpg",
+                url: "https://www.youtube.com/watch?v=FC2osgPbwjQ",
+                embed: "https://www.youtube.com/embed/FC2osgPbwjQ?autoplay=1&rel=0"
+            }
+        ];
+
+        let channelVideos = [...DEFAULT_VIDEOS];
         let currentFilter = 'all';
-        let latestSpotlight = null;
+        let latestSpotlight = channelVideos[0];
 
         function showToast(msg) {
             const toast = document.getElementById('live-toast');
@@ -1586,48 +1757,50 @@
 
             try {
                 const res = await fetch('/api/channel', { cache: 'no-store' });
-                if (!res.ok) throw new Error('API serveri xatosi');
-                const data = await res.json();
+                const contentType = res.headers.get('content-type') || '';
+                if (res.ok && contentType.includes('application/json')) {
+                    const data = await res.json();
 
-                // 1. Metrics & Stats
-                if (data.subscribers) {
-                    document.getElementById('metric-subs').innerText = data.subscribers;
-                }
-                if (data.totalViews) {
-                    document.getElementById('metric-views').innerText = data.totalViews;
-                }
-                if (data.videoCount) {
-                    document.getElementById('metric-videos').innerText = data.videoCount + ' ta';
-                }
-                if (data.nextGoal) {
-                    document.getElementById('metric-goal').innerText = data.nextGoal;
-                    document.getElementById('milestone-target-text').innerText = data.nextGoal + ' Obunachi';
-                }
-                if (data.progressPercent) {
-                    document.getElementById('milestone-percent-text').innerHTML = `<i class="fa-solid fa-percent"></i> ${data.progressPercent}% erishildi`;
-                    document.getElementById('milestone-progress-fill').style.width = data.progressPercent + '%';
-                }
-                if (data.avatarUrl) {
-                    document.getElementById('channel-avatar').src = data.avatarUrl;
-                }
+                    // 1. Metrics & Stats
+                    if (data.subscribers) {
+                        document.getElementById('metric-subs').innerText = data.subscribers;
+                    }
+                    if (data.totalViews) {
+                        document.getElementById('metric-views').innerText = data.totalViews;
+                    }
+                    if (data.videoCount) {
+                        document.getElementById('metric-videos').innerText = data.videoCount + ' ta';
+                    }
+                    if (data.nextGoal) {
+                        document.getElementById('metric-goal').innerText = data.nextGoal;
+                        document.getElementById('milestone-target-text').innerText = data.nextGoal + ' Obunachi';
+                    }
+                    if (data.progressPercent) {
+                        document.getElementById('milestone-percent-text').innerHTML = `<i class="fa-solid fa-percent"></i> ${data.progressPercent}% erishildi`;
+                        document.getElementById('milestone-progress-fill').style.width = data.progressPercent + '%';
+                    }
+                    if (data.avatarUrl) {
+                        document.getElementById('channel-avatar').src = data.avatarUrl;
+                    }
 
-                // 2. Videos list & Spotlight
-                if (data.videos && data.videos.length > 0) {
-                    channelVideos = data.videos;
-                    latestSpotlight = data.videos[0];
+                    // 2. Videos list & Spotlight
+                    if (data.videos && data.videos.length > 0) {
+                        channelVideos = data.videos;
+                        latestSpotlight = data.videos[0];
 
-                    document.getElementById('spotlight-poster').src = latestSpotlight.thumbnailMax || latestSpotlight.thumbnail;
-                    document.getElementById('spotlight-video-title').innerText = latestSpotlight.title;
-                    document.getElementById('spotlight-yt-external').href = latestSpotlight.url;
+                        document.getElementById('spotlight-poster').src = latestSpotlight.thumbnailMax || latestSpotlight.thumbnail;
+                        document.getElementById('spotlight-video-title').innerText = latestSpotlight.title;
+                        document.getElementById('spotlight-yt-external').href = latestSpotlight.url;
 
-                    applyFilters();
-                }
+                        applyFilters();
+                    }
 
-                if (manual) {
-                    showToast("YouTube'dan eng yangi ma'lumotlar yuklandi!");
+                    if (manual) {
+                        showToast("YouTube'dan eng yangi ma'lumotlar yuklandi!");
+                    }
                 }
             } catch (err) {
-                console.error("Sinxronizatsiya xatosi:", err);
+                console.log("Offline yoki statik rejim:", err);
             } finally {
                 if (manual && syncIcon) {
                     setTimeout(() => syncIcon.classList.remove('fa-spin'), 600);
@@ -1635,7 +1808,10 @@
             }
         }
 
-        // Ilk yuklash
+        // Ilk bor barcha videolarni darhol ekranga chiqarish
+        applyFilters();
+
+        // Serverdan jonli tekshirish
         syncLive();
 
         // Har 15 soniyada fonda YouTube bilan jonli sinxronizatsiya

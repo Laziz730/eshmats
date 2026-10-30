@@ -1,0 +1,85 @@
+export async function onRequestGet() {
+  const CHANNEL_ID = "UCffSC8ee8HUgtxpr7u0PSIA";
+  const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+
+  try {
+    const rssRes = await fetch(RSS_URL, {
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+    });
+
+    const xml = await rssRes.text();
+
+    const videoEntries = [];
+    const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
+    let match;
+
+    while ((match = entryRegex.exec(xml)) !== null) {
+      const entryXml = match[1];
+      const idMatch = entryXml.match(/<yt:videoId>(.*?)<\/yt:videoId>/);
+      const titleMatch = entryXml.match(/<title>(.*?)<\/title>/);
+      const pubMatch = entryXml.match(/<published>(.*?)<\/published>/);
+      const viewsMatch = entryXml.match(/views="(\d+)"/);
+
+      if (idMatch && titleMatch) {
+        const vId = idMatch[1];
+        const title = titleMatch[1];
+        const published = pubMatch ? pubMatch[1] : "";
+        const viewsNum = viewsMatch ? parseInt(viewsMatch[1]) : 0;
+
+        let category = "senariy";
+        const lower = title.toLowerCase();
+        if (lower.includes("zombi") || lower.includes("omon qol")) {
+          category = "sarguzasht";
+        } else if (lower.includes("kuni") || lower.includes("30 kun") || lower.includes("7 kun") || lower.includes("sinov") || lower.includes("soat 4:00")) {
+          category = "sinov";
+        } else if (lower.includes("rossiya") || lower.includes("hayot") || lower.includes("nafs") || lower.includes("mehmonda") || lower.includes("uxlab")) {
+          category = "ibratli";
+        }
+
+        videoEntries.push({
+          id: vId,
+          title: title,
+          views: viewsNum.toLocaleString(),
+          viewsNum: viewsNum,
+          published: published,
+          category: category,
+          thumbnail: `https://i.ytimg.com/vi/${vId}/hqdefault.jpg`,
+          thumbnailMax: `https://i.ytimg.com/vi/${vId}/maxresdefault.jpg`,
+          url: `https://www.youtube.com/watch?v=${vId}`,
+          embed: `https://www.youtube.com/embed/${vId}?autoplay=1&rel=0`
+        });
+      }
+    }
+
+    const totalViews = videoEntries.reduce((acc, v) => acc + (v.viewsNum || 0), 0);
+
+    const data = {
+      channelTitle: "Eshmat",
+      channelHandle: "@Eshmats",
+      subscribers: "6.3K",
+      subscribersNum: 6300,
+      nextGoal: "10,000",
+      progressPercent: 63.0,
+      videoCount: String(videoEntries.length || 14),
+      totalViews: totalViews ? totalViews.toLocaleString() : "1,280,000+",
+      avatarUrl: "/eshmat_avatar.jpg",
+      videos: videoEntries,
+      serverTime: new Date().toLocaleTimeString()
+    };
+
+    return new Response(JSON.stringify(data), {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "public, max-age=30",
+        "Access-Control-Allow-Origin": "*"
+      }
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" }
+    });
+  }
+}
