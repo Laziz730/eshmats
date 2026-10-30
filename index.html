@@ -1853,38 +1853,56 @@
         applyFilters();
 
         // Saytga kirganlarni hisobga olish
+        let currentVisitsCount = 3485;
+
         async function recordVisitor() {
+            let base = 3485;
+            let stored = parseInt(localStorage.getItem('eshmat_site_visits') || '0');
+            if (stored < base) stored = base;
+
+            // Yangi kirishda sonni oshirish
+            if (!sessionStorage.getItem('eshmat_session_active')) {
+                stored += Math.floor(Math.random() * 2) + 1;
+                sessionStorage.setItem('eshmat_session_active', '1');
+            }
+            localStorage.setItem('eshmat_site_visits', stored);
+            currentVisitsCount = stored;
+
             try {
                 const res = await fetch('/api/visit');
                 const contentType = res.headers.get('content-type') || '';
                 if (res.ok && contentType.includes('application/json')) {
                     const data = await res.json();
-                    if (data.formatted) {
-                        document.getElementById('total-site-visitors').innerText = data.formatted + " ta";
-                        localStorage.setItem('cached_visitors', data.formatted);
-                        return;
+                    if (data.totalVisits && data.totalVisits > currentVisitsCount) {
+                        currentVisitsCount = data.totalVisits;
                     }
                 }
             } catch (e) {
-                console.log("Visitor counter fallback:", e);
+                // oflayn fallback
             }
 
-            // Fallback (statik yoki oflayn rejim uchun)
-            let cached = localStorage.getItem('cached_visitors');
-            if (cached) {
-                document.getElementById('total-site-visitors').innerText = cached + " ta";
-            } else {
-                let localCount = parseInt(localStorage.getItem('local_site_visitors') || '1');
-                if (!sessionStorage.getItem('session_counted')) {
-                    localCount += 1;
-                    localStorage.setItem('local_site_visitors', localCount);
-                    sessionStorage.setItem('session_counted', '1');
-                }
-                document.getElementById('total-site-visitors').innerText = localCount.toLocaleString() + " ta";
+            updateVisitorBadge(currentVisitsCount);
+        }
+
+        function updateVisitorBadge(count) {
+            const el = document.getElementById('total-site-visitors');
+            if (el) {
+                el.innerText = count.toLocaleString() + " ta";
+                el.style.color = "#00ff88";
+                setTimeout(() => { el.style.color = "#ff4d5a"; }, 800);
             }
         }
 
         recordVisitor();
+
+        // Jonli kiruvchilar oqimini dinamik oshirib borish
+        setInterval(() => {
+            if (Math.random() > 0.3) {
+                currentVisitsCount += Math.floor(Math.random() * 2) + 1;
+                localStorage.setItem('eshmat_site_visits', currentVisitsCount);
+                updateVisitorBadge(currentVisitsCount);
+            }
+        }, 18000);
 
         // Serverdan jonli tekshirish
         syncLive();

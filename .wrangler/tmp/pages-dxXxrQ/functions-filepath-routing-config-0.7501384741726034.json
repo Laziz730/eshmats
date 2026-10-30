@@ -1,0 +1,21 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/channel",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/channel.js:onRequestGet"
+      ]
+    },
+    {
+      "routePath": "/api/visit",
+      "mountPath": "/api",
+      "method": "GET",
+      "module": [
+        "api/visit.js:onRequestGet"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}
