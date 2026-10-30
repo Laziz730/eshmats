@@ -974,6 +974,40 @@
             text-decoration: underline;
         }
 
+        /* Jami Saytga Kirganlar Hisoblagichi CSS */
+        .site-visitors-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 17, 34, 0.3);
+            padding: 9px 22px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+            transition: var(--transition);
+        }
+
+        .site-visitors-badge:hover {
+            border-color: var(--primary);
+            background: rgba(255, 17, 34, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .visitors-count-pill {
+            background: rgba(255, 17, 34, 0.15);
+            color: #ff4d5a;
+            border: 1px solid rgba(255, 17, 34, 0.35);
+            padding: 3px 12px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
         /* Cinema Theater Modal */
         .cinema-theater-overlay {
             position: fixed;
@@ -1387,6 +1421,13 @@
                 <a href="https://t.me/Laziz_Abduahadov" target="_blank">
                     <i class="fa-brands fa-telegram"></i> Laziz Abduahadov (@Laziz_Abduahadov)
                 </a>
+            </div>
+
+            <!-- Jami Saytga Kirganlar Hisoblagichi -->
+            <div class="site-visitors-badge">
+                <i class="fa-solid fa-users-viewfinder" style="color: var(--primary); font-size: 16px;"></i>
+                <span>Jami saytga kirganlar:</span>
+                <span class="visitors-count-pill" id="total-site-visitors">Yuklanmoqda...</span>
             </div>
 
             <p style="color: var(--text-muted); font-size: 13px;">
@@ -1810,6 +1851,40 @@
 
         // Ilk bor barcha videolarni darhol ekranga chiqarish
         applyFilters();
+
+        // Saytga kirganlarni hisobga olish
+        async function recordVisitor() {
+            try {
+                const res = await fetch('/api/visit');
+                const contentType = res.headers.get('content-type') || '';
+                if (res.ok && contentType.includes('application/json')) {
+                    const data = await res.json();
+                    if (data.formatted) {
+                        document.getElementById('total-site-visitors').innerText = data.formatted + " ta";
+                        localStorage.setItem('cached_visitors', data.formatted);
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.log("Visitor counter fallback:", e);
+            }
+
+            // Fallback (statik yoki oflayn rejim uchun)
+            let cached = localStorage.getItem('cached_visitors');
+            if (cached) {
+                document.getElementById('total-site-visitors').innerText = cached + " ta";
+            } else {
+                let localCount = parseInt(localStorage.getItem('local_site_visitors') || '1');
+                if (!sessionStorage.getItem('session_counted')) {
+                    localCount += 1;
+                    localStorage.setItem('local_site_visitors', localCount);
+                    sessionStorage.setItem('session_counted', '1');
+                }
+                document.getElementById('total-site-visitors').innerText = localCount.toLocaleString() + " ta";
+            }
+        }
+
+        recordVisitor();
 
         // Serverdan jonli tekshirish
         syncLive();

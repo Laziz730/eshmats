@@ -12,11 +12,36 @@ DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 CHANNEL_ID = "UCffSC8ee8HUgtxpr7u0PSIA"
 CHANNEL_URL = "https://www.youtube.com/@Eshmats"
 RSS_URL = f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}"
+VISITORS_FILE = os.path.join(DIRECTORY, "visitors.json")
 
 cache = {
     "timestamp": 0,
     "data": None
 }
+
+def get_and_increment_visitors():
+    visits = 1
+    try:
+        if os.path.exists(VISITORS_FILE):
+            with open(VISITORS_FILE, 'r') as f:
+                data = json.load(f)
+                visits = data.get('totalVisits', 0) + 1
+        with open(VISITORS_FILE, 'w') as f:
+            json.dump({'totalVisits': visits}, f)
+    except Exception as e:
+        print(f"Visitor counter error: {e}")
+    return visits
+
+def get_current_visitors():
+    visits = 1
+    try:
+        if os.path.exists(VISITORS_FILE):
+            with open(VISITORS_FILE, 'r') as f:
+                data = json.load(f)
+                visits = data.get('totalVisits', 1)
+    except Exception:
+        pass
+    return visits
 
 def parse_number(text):
     if not text:
@@ -68,10 +93,6 @@ def fetch_live_data():
             vids_match = re.search(r'\"([0-9\.,MKk]+)\s+videos\"', html)
             if vids_match:
                 video_count_str = vids_match.group(1)
-                
-            avatar_match = re.search(r'(https://yt3\.googleusercontent\.com/[a-zA-Z0-9_-]+)=s', html)
-            if avatar_match:
-                avatar_url = f"{avatar_match.group(1)}=s240-c-k-c0x00ffffff-no-rj"
     except Exception as e:
         print(f"[Warning] Scrape error: {e}")
 
@@ -133,7 +154,7 @@ def fetch_live_data():
         videos = cache["data"]["videos"]
         total_views_num = cache["data"].get("totalViewsNum", 0)
 
-    # Calculate subscriber milestone (next goal: 10K or 50K or 100K)
+    # Calculate subscriber milestone
     subs_num = parse_number(subscribers_str)
     next_goal = 10000
     if subs_num >= 10000:
@@ -144,6 +165,7 @@ def fetch_live_data():
         next_goal = 100000
 
     progress_percent = min(100, round((subs_num / next_goal) * 100, 1)) if next_goal else 0
+    current_visits = get_current_visitors()
 
     data = {
         "channelTitle": "Eshmat",
@@ -156,6 +178,8 @@ def fetch_live_data():
         "videoCount": video_count_str if video_count_str != "N/A" else str(len(videos)),
         "totalViews": f"{total_views_num:,}",
         "totalViewsNum": total_views_num,
+        "totalVisits": current_visits,
+        "totalVisitsFormatted": f"{current_visits:,}",
         "avatarUrl": avatar_url,
         "videos": videos,
         "serverTime": time.strftime("%H:%M:%S")
@@ -171,6 +195,31 @@ class LiveChannelHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
     def do_GET(self):
+        # 1. Visitor counter endpoint
+        if self.path.startswith('/api/visit'):
+            try:
+                visits = get_and_increment_visitors()
+                body = json.dumps({
+                    "totalVisits": visits,
+                    "formatted": f"{visits:,}"
+                }).encode('utf-8')
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
+                self.send_header('Content-Length', str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+            except Exception as e:
+                err = json.dumps({"error": str(e)}).encode('utf-8')
+                self.send_response(500)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Content-Length', str(len(err)))
+                self.end_headers()
+                self.wfile.write(err)
+            return
+
+        # 2. Channel data endpoint
         if self.path.startswith('/api/channel'):
             try:
                 data = fetch_live_data()
