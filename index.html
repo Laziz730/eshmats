@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESHMAT | Rasmiy Veb-Portali & Jonli Video Galereya</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="eshmat_avatar.jpg">
+
+    <!-- FontAwesome 6 Pro CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #ff1122;
+            --primary-glow: rgba(255, 17, 34, 0.45);
+            --primary-dark: #cc0011;
+            --bg-main: #0a0a0d;
+            --bg-card: #131317;
+            --bg-card-hover: #1a1a22;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-tg: #0088cc;
+            --accent-green: #10b981;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 17, 34, 0.5);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Glowing Background Effect */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1100px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(255, 17, 34, 0.18) 0%, rgba(10, 10, 13, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top Announcement Developer Ribbon */
+        .dev-ribbon {
+            background: linear-gradient(90deg, #180005, #26080d, #180005);
+            border-bottom: 1px solid rgba(255, 17, 34, 0.3);
+            padding: 9px 20px;
+            font-size: 13px;
+            position: relative;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .dev-ribbon-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #d1d5db;
+        }
+
+        .dev-badge-link {
+            color: #ff4d5a;
+            text-decoration: none;
+            font-weight: 700;
+            background: rgba(255, 17, 34, 0.15);
+            padding: 3px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 17, 34, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .dev-badge-link:hover {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Header Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 13, 0.88);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-icon-box {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), #b30010);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            box-shadow: 0 4px 18px var(--primary-glow);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .nav-item:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .live-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34d399;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-green);
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.7; }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            z-index: 1;
+            padding: 55px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar-container {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
+        .avatar-glow-ring {
+            width: 175px;
+            height: 175px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--primary), #ff606e, var(--primary));
+            box-shadow: 0 0 45px var(--primary-glow);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-glow-ring:hover {
+            transform: scale(1.04);
+        }
+
+        .avatar-glow-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            background: #000;
+        }
+
+        .badge-verified-creator {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: #fff;
+            color: var(--primary);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .channel-name-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .channel-name-wrapper h1 {
+            font-size: 46px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .channel-handle-tag {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-lead-text {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Metric Cards Bar with Vivid Icons */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 950px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--border);
+            padding: 20px 22px;
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+            transition: var(--transition);
+        }
+
+        .metric-card:hover {
+            border-color: rgba(255, 17, 34, 0.4);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .metric-icon-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .icon-red {
+            background: rgba(255, 17, 34, 0.15);
+            color: #ff3344;
+            border: 1px solid rgba(255, 17, 34, 0.3);
+        }
+
+        .icon-blue {
+            background: rgba(0, 136, 204, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(0, 136, 204, 0.3);
+        }
+
+        .icon-purple {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .icon-gold {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .metric-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-number {
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .metric-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Target Milestone Box */
+        .milestone-box {
+            max-width: 720px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 24px;
+            margin-bottom: 30px;
+        }
+
+        .milestone-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 10px;
+            background: #1f1f26;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-indicator {
+            height: 100%;
+            background: linear-gradient(90deg, #ff1122, #ff5566);
+            border-radius: 20px;
+            transition: width 1s ease-in-out;
+            box-shadow: 0 0 14px var(--primary);
+        }
+
+        /* Hero Action Buttons */
+        .action-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 25px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-yt-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+
+        .btn-yt-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 17, 34, 0.6);
+        }
+
+        .btn-tg-channel {
+            background: var(--accent-tg);
+            color: #fff;
+        }
+
+        .btn-tg-channel:hover {
+            background: #0077b3;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 136, 204, 0.4);
+        }
+
+        .btn-interactive {
+            background: rgba(255, 255, 255, 0.07);
+            color: #fff;
+            border: 1px solid var(--border);
+        }
+
+        .btn-interactive:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* Pillars / Features Highlight Cards */
+        .pillars-section {
+            max-width: 1200px;
+            margin: 40px auto 20px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .pillar-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            text-align: left;
+            transition: var(--transition);
+        }
+
+        .pillar-card:hover {
+            border-color: rgba(255, 17, 34, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-3px);
+        }
+
+        .pillar-icon {
+            font-size: 26px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .pillar-card h3 {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .pillar-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Spotlight Feature Section */
+        .spotlight-wrapper {
+            max-width: 1200px;
+            margin: 45px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .spotlight-box {
+            background: linear-gradient(135deg, #17171d 0%, #101014 100%);
+            border: 1px solid rgba(255, 17, 34, 0.35);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+        }
+
+        .spotlight-media {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            background: #000;
+            min-height: 330px;
+        }
+
+        .spotlight-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .spotlight-media:hover img {
+            transform: scale(1.05);
+        }
+
+        .media-hover-shield {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .center-play-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 0 35px var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .spotlight-media:hover .center-play-circle {
+            transform: scale(1.16);
+        }
+
+        .spotlight-content {
+            padding: 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .spotlight-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 17, 34, 0.15);
+            color: #ff4d5a;
+            border: 1px solid rgba(255, 17, 34, 0.35);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 14px;
+        }
+
+        .spotlight-title {
+            font-size: 25px;
+            font-weight: 900;
+            line-height: 1.35;
+            margin-bottom: 14px;
+        }
+
+        .spotlight-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Video Gallery Container */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-top-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .category-filter-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 9px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px var(--primary-glow);
+        }
+
+        .search-field-box {
+            position: relative;
+            min-width: 290px;
+        }
+
+        .search-field-box input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 10px 18px 10px 44px;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-field-box input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.09);
+            box-shadow: 0 0 16px rgba(255, 17, 34, 0.3);
+        }
+
+        .search-field-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Video Grid Layout */
+        .video-grid-shelf {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 24px;
+        }
+
+        .video-card-element {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .video-card-element:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 32px rgba(255, 17, 34, 0.25);
+            background: var(--bg-card-hover);
+        }
+
+        .card-poster-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .card-poster-wrap img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .video-card-element:hover .card-poster-wrap img {
+            transform: scale(1.06);
+        }
+
+        .poster-play-tag {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .poster-play-tag span {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 16px rgba(255, 17, 34, 0.9);
+        }
+
+        .video-card-element:hover .poster-play-tag {
+            opacity: 1;
+        }
+
+        .corner-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tag-top-hot {
+            background: #ff5500;
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(255, 85, 0, 0.6);
+        }
+
+        .tag-just-in {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 2px 10px var(--primary-glow);
+        }
+
+        .card-info-pane {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .video-heading {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #fff;
+            margin-bottom: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-stats-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
+        }
+
+        .card-stats-footer span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Interactive Random Video Generator */
+        .dice-interactive-card {
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(255, 17, 34, 0.16) 0%, rgba(19, 19, 23, 0.9) 70%);
+            border: 1px solid rgba(255, 17, 34, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 45px 25px;
+            margin: 60px auto;
+            max-width: 820px;
+        }
+
+        .dice-interactive-card h2 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .dice-interactive-card p {
+            color: var(--text-secondary);
+            margin-bottom: 26px;
+            font-size: 15px;
+        }
+
+        /* Sponsors & Contact Section */
+        .partnership-hub {
+            background: linear-gradient(135deg, #131317 0%, #1a1a24 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 50px 30px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .partnership-hub h2 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .partnership-hub p {
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin: 0 auto 32px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: #050507;
+            border-top: 1px solid var(--border);
+            padding: 55px 20px 35px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .footer-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 26px;
+        }
+
+        .footer-social-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-icon-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 18px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-icon-btn:hover {
+            color: #fff;
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 18px var(--primary-glow);
+        }
+
+        /* Prominent Developer Box in Footer */
+        .developer-signature {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .developer-signature:hover {
+            border-color: var(--primary);
+            background: rgba(255, 17, 34, 0.09);
+        }
+
+        .developer-signature a {
+            color: #ff4d5a;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .developer-signature a:hover {
+            text-decoration: underline;
+        }
+
+        /* Cinema Theater Modal */
+        .cinema-theater-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(14px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .cinema-theater-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cinema-screen-box {
+            background: #15151a;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 920px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cinema-theater-overlay.active .cinema-screen-box {
+            transform: scale(1);
+        }
+
+        .theater-video-frame {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+        }
+
+        .theater-video-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .theater-panel {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .theater-info h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .theater-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theater-close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .theater-close-btn:hover {
+            background: var(--primary);
+        }
+
+        /* Toast Alert */
+        .live-toast-alert {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #191920;
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            color: #fff;
+            padding: 13px 22px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        .live-toast-alert.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .metrics-grid, .pillars-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .spotlight-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 14px 20px;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .channel-name-wrapper h1 {
+                font-size: 34px;
+            }
+            .metrics-grid, .pillars-section {
+                grid-template-columns: 1fr;
+            }
+            .gallery-top-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-field-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glowing Backdrop -->
+    <div class="ambient-glow"></div>
+
+    <!-- Developer Ribbon -->
+    <div class="dev-ribbon">
+        <span class="dev-ribbon-text">
+            <i class="fa-solid fa-code" style="color: #ff4d5a;"></i> Veb-sayt yaratuvchisi va dasturchi:
+        </span>
+        <a href="https://t.me/Laziz_Abduahadov" target="_blank" class="dev-badge-link">
+            <i class="fa-brands fa-telegram"></i> @Laziz_Abduahadov
+        </a>
+    </div>
+
+    <!-- Navbar -->
+    <header>
+        <a href="#home" class="nav-brand">
+            <div class="brand-icon-box" style="overflow: hidden; padding: 2px;">
+                <img src="eshmat_avatar.jpg" alt="Logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
+            </div>
+            <span>ESHMAT</span>
+        </a>
+        <nav class="nav-menu">
+            <a href="#home" class="nav-item"><i class="fa-solid fa-house"></i> Bosh sahifa</a>
+            <a href="#spotlight" class="nav-item"><i class="fa-solid fa-star"></i> Premyera</a>
+            <a href="#videos" class="nav-item"><i class="fa-solid fa-clapperboard"></i> Videolar</a>
+            <a href="#contact" class="nav-item"><i class="fa-solid fa-handshake"></i> Hamkorlik</a>
+            <div class="live-status-pill">
+                <span class="live-dot"></span> JONLI EFIRDA
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Avatar with verified badge -->
+        <div class="avatar-container">
+            <div class="avatar-glow-ring">
+                <img id="channel-avatar" 
+                     src="eshmat_avatar.jpg" 
+                     onerror="this.src='https://yt3.googleusercontent.com/ILkWouv5gosMGSUZv0isotVNg03JFVQqYjRMHPENF8IU6VbvmgnvC4kX894EUtV6dxmDYRYmFA=s500-c-k-c0x00ffffff-no-rj'" 
+                     alt="Eshmat Rasmiy Profil Rasmi">
+            </div>
+            <div class="badge-verified-creator" title="Tasdiqlangan Rasmiy Kanal">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+        </div>
+
+        <div class="channel-name-wrapper">
+            <h1><i class="fa-solid fa-bolt" style="color: var(--primary); font-size: 36px;"></i> ESHMAT</h1>
+            <span class="channel-handle-tag"><i class="fa-solid fa-at"></i> Eshmats</span>
+        </div>
+
+        <p class="hero-lead-text">
+            Ibratli hikoyalar, qiziqarli senariylar, 30 kunlik intizom sinovlari va sarguzashtlar olami! Har kuni yangi bilim va hayotiy motivatsiya.
+        </p>
+
+        <!-- Dynamic Live Metrics Cards -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon-circle icon-red">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <div class="metric-content">
+                    <span class="metric-number" id="metric-subs">6.3K</span>
+                    <span class="metric-title"><i class="fa-solid fa-users"></i> Jonli Obunachilar</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-circle icon-blue">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="metric-content">
+                    <span class="metric-number" id="metric-views">1,280,000+</span>
+                    <span class="metric-title"><i class="fa-solid fa-eye"></i> Jami Ko'rishlar</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-circle icon-purple">
+                    <i class="fa-solid fa-video"></i>
+                </div>
+                <div class="metric-content">
+                    <span class="metric-number" id="metric-videos">14 ta</span>
+                    <span class="metric-title"><i class="fa-solid fa-film"></i> Yuklangan Videolar</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-circle icon-gold">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div class="metric-content">
+                    <span class="metric-number" id="metric-goal">10,000</span>
+                    <span class="metric-title"><i class="fa-solid fa-bullseye"></i> Keyingi Marra</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10K Milestone Bar -->
+        <div class="milestone-box">
+            <div class="milestone-top-row">
+                <span><i class="fa-solid fa-award" style="color: #f59e0b;"></i> Keyingi Maqsad: <b id="milestone-target-text">10,000 Obunachi</b></span>
+                <span id="milestone-percent-text" style="color: var(--primary);"><i class="fa-solid fa-percent"></i> 63% erishildi</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-indicator" id="milestone-progress-fill" style="width: 63%;"></div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-row">
+            <a href="https://www.youtube.com/@Eshmats?sub_confirmation=1" target="_blank" class="btn btn-yt-primary">
+                <i class="fa-brands fa-youtube"></i> Obuna Bo'lish <i class="fa-solid fa-bell"></i>
+            </a>
+            <a href="https://t.me/eshmats_uz" target="_blank" class="btn btn-tg-channel">
+                <i class="fa-brands fa-telegram"></i> Telegram Kanal <i class="fa-solid fa-paper-plane"></i>
+            </a>
+            <button onclick="rollRandomVideo()" class="btn btn-interactive">
+                <i class="fa-solid fa-dice-d20"></i> Tasodifiy Video
+            </button>
+            <button onclick="syncLive(true)" class="btn btn-interactive" title="YouTube bilan qayta sinxronlash">
+                <i class="fa-solid fa-arrows-rotate" id="sync-icon"></i> Yangilash
+            </button>
+        </div>
+    </section>
+
+    <!-- Pillars / Highlights Cards -->
+    <section class="pillars-section">
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-stopwatch-20"></i></div>
+            <h3>30 Kunlik Sinovlar</h3>
+            <p>4:00 da uyg'onish, ijtimoiy tarmoqsiz yashash va qat'iy intizom eksperimentlari.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-biohazard"></i></div>
+            <h3>Sarguzasht & Senariy</h3>
+            <p>Zombi apokalipsisi, elektrsiz qolgan shahar va fantastik hayotiy vaziyatlar.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-lightbulb"></i></div>
+            <h3>Ibratli Hikoyalar</h3>
+            <p>Har bir videoda chuqur falsafa, ibrat va insonni o'ylantiradigan xulosalar.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Real-Vaqt Sinxron</h3>
+            <p>YouTube'da yangi video yuklanishi bilan saytda avtomatik paydo bo'ladi.</p>
+        </div>
+    </section>
+
+    <!-- Spotlight / So'nggi Premyera -->
+    <section class="spotlight-wrapper" id="spotlight">
+        <div class="spotlight-box">
+            <div class="spotlight-media" onclick="openSpotlightVideo()">
+                <img id="spotlight-poster" src="https://i.ytimg.com/vi/isQKSeC-_d4/maxresdefault.jpg" alt="Featured Video Poster">
+                <div class="media-hover-shield">
+                    <div class="center-play-circle">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="spotlight-content">
+                <span class="spotlight-pill"><i class="fa-solid fa-fire-flame-curved"></i> Eng So'nggi Premyera</span>
+                <h2 class="spotlight-title" id="spotlight-video-title">Eshmat 100 yil uxlab, 2126-yilda uyg’ondi</h2>
+                <p class="spotlight-text" id="spotlight-video-desc">Eshmatning 2126-yildagi kelajak dunyosiga tushib qolishi haqidagi eng yangi va shov-shuvli fantastik senariysi.</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="btn btn-yt-primary" onclick="openSpotlightVideo()">
+                        <i class="fa-solid fa-circle-play"></i> Tomosha Qilish
+                    </button>
+                    <a id="spotlight-yt-external" href="https://www.youtube.com/watch?v=isQKSeC-_d4" target="_blank" class="btn btn-interactive">
+                        <i class="fa-brands fa-youtube"></i> YouTube'da ochish <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Barcha Videolar Galereyasi -->
+    <section class="gallery-container" id="videos">
+        <div class="gallery-top-controls">
+            <!-- Filter Toifalari -->
+            <div class="category-filter-nav">
+                <button class="filter-btn active" onclick="setCategory('all', this)">
+                    <i class="fa-solid fa-layer-group"></i> Barchasi
+                </button>
+                <button class="filter-btn" onclick="setCategory('popular', this)">
+                    <i class="fa-solid fa-fire"></i> Eng Ommabop
+                </button>
+                <button class="filter-btn" onclick="setCategory('sinov', this)">
+                    <i class="fa-solid fa-stopwatch"></i> 30 Kunlik Sinovlar
+                </button>
+                <button class="filter-btn" onclick="setCategory('sarguzasht', this)">
+                    <i class="fa-solid fa-biohazard"></i> Zombi & Sarguzasht
+                </button>
+                <button class="filter-btn" onclick="setCategory('ibratli', this)">
+                    <i class="fa-solid fa-lightbulb"></i> Ibratli Hikoyalar
+                </button>
+            </div>
+
+            <!-- Qidiruv maydoni -->
+            <div class="search-field-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-video-input" placeholder="Videolarni sarlavha bo'yicha qidirish..." oninput="applyFilters()">
+            </div>
+        </div>
+
+        <!-- Dinamik video kartalari setkasi -->
+        <div class="video-grid-shelf" id="videos-shelf">
+            <!-- JavaScript orqali to'ldiriladi -->
+        </div>
+    </section>
+
+    <!-- Tasodifiy Video Blok -->
+    <div class="dice-interactive-card">
+        <h2><i class="fa-solid fa-dice" style="color: var(--primary);"></i> Qaysi videoni ko'rishni bilmayapsizmi?</h2>
+        <p>Tugmani bosing va biz Eshmatning eng yaxshi videolaridan birini siz uchun tasodifiy tanlab beramiz!</p>
+        <button onclick="rollRandomVideo()" class="btn btn-yt-primary" style="font-size: 16px; padding: 14px 32px;">
+            <i class="fa-solid fa-shuffle"></i> Menga Video Tanlab Ber!
+        </button>
+    </div>
+
+    <!-- Hamkorlik va Reklama Bloki -->
+    <section class="gallery-container" id="contact">
+        <div class="partnership-hub">
+            <h2><i class="fa-solid fa-handshake" style="color: var(--primary);"></i> Reklama va Tijoriy Hamkorlik</h2>
+            <p>Eshmat kanalida o'z brendingiz yoki loyihangizni millionlab faol o'zbek auditoriyasiga reklama qiling.</p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://t.me/eshmats_uz" target="_blank" class="btn btn-tg-channel">
+                    <i class="fa-brands fa-telegram"></i> Kanal Ma'muriyati (@eshmats_uz)
+                </a>
+                <a href="https://t.me/Laziz_Abduahadov" target="_blank" class="btn btn-interactive">
+                    <i class="fa-solid fa-laptop-code" style="color: #ff4d5a;"></i> Dasturchi: @Laziz_Abduahadov
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-wrap">
+            <div class="footer-social-row">
+                <a href="https://www.youtube.com/@Eshmats" target="_blank" class="footer-icon-btn" title="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://t.me/eshmats_uz" target="_blank" class="footer-icon-btn" title="Telegram">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+            </div>
+
+            <div class="developer-signature">
+                <i class="fa-solid fa-code" style="color: #ff4d5a;"></i>
+                <span>Sayt Dasturchisi:</span>
+                <a href="https://t.me/Laziz_Abduahadov" target="_blank">
+                    <i class="fa-brands fa-telegram"></i> Laziz Abduahadov (@Laziz_Abduahadov)
+                </a>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 13px;">
+                <i class="fa-regular fa-copyright"></i> 2026 ESHMAT. Barcha huquqlar himoyalangan. Real-vaqtdagi YouTube sinxronizatsiyasi bilan quvvatlangan.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Cinema Theater Modal -->
+    <div class="cinema-theater-overlay" id="theater-modal" onclick="closeModalOnBackdrop(event)">
+        <div class="cinema-screen-box">
+            <div class="theater-video-frame">
+                <iframe id="theater-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="theater-panel">
+                <div class="theater-info">
+                    <h3 id="theater-title"><i class="fa-solid fa-play" style="color: var(--primary);"></i> Video sarlavhasi</h3>
+                    <p id="theater-stats"><i class="fa-regular fa-eye"></i> Ko'rishlar yuklanmoqda...</p>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <a id="theater-yt-btn" href="#" target="_blank" class="btn btn-yt-primary" style="padding: 9px 18px; font-size: 13px;">
+                        <i class="fa-brands fa-youtube"></i> YouTube'da ochish
+                    </a>
+                    <button class="theater-close-btn" onclick="closeModal()" title="Yopish">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Toast Alert -->
+    <div class="live-toast-alert" id="live-toast">
+        <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 18px;"></i>
+        <span id="toast-message">YouTube ma'lumotlari jonli yangilandi!</span>
+    </div>
+
+    <!-- Interactive JavaScript Engine -->
+    <script>
+        let channelVideos = [];
+        let currentFilter = 'all';
+        let latestSpotlight = null;
+
+        function showToast(msg) {
+            const toast = document.getElementById('live-toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function timeAgo(dateString) {
+            try {
+                const date = new Date(dateString);
+                const seconds = Math.floor((new Date() - date) / 1000);
+                let interval = Math.floor(seconds / 86400);
+                if (interval > 1) return interval + " kun oldin";
+                if (interval === 1) return "Kecha";
+                interval = Math.floor(seconds / 3600);
+                if (interval >= 1) return interval + " soat oldin";
+                interval = Math.floor(seconds / 60);
+                if (interval >= 1) return interval + " daqiqa oldin";
+                return "Hozirgina";
+            } catch (e) {
+                return "";
+            }
+        }
+
+        function getCategoryIcon(cat) {
+            if (cat === 'sarguzasht') return '<i class="fa-solid fa-biohazard"></i>';
+            if (cat === 'sinov') return '<i class="fa-solid fa-stopwatch"></i>';
+            if (cat === 'ibratli') return '<i class="fa-solid fa-lightbulb"></i>';
+            return '<i class="fa-solid fa-film"></i>';
+        }
+
+        function openVideoModal(video) {
+            const modal = document.getElementById('theater-modal');
+            const iframe = document.getElementById('theater-iframe');
+            document.getElementById('theater-title').innerHTML = `${getCategoryIcon(video.category)} ${video.title}`;
+            document.getElementById('theater-stats').innerHTML = `<i class="fa-regular fa-eye"></i> ${video.views} ko'rish &bull; <i class="fa-regular fa-clock"></i> ${timeAgo(video.published)}`;
+            document.getElementById('theater-yt-btn').href = video.url;
+            iframe.src = `https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('theater-modal');
+            const iframe = document.getElementById('theater-iframe');
+            iframe.src = "";
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnBackdrop(e) {
+            if (e.target.id === 'theater-modal') {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function openSpotlightVideo() {
+            if (latestSpotlight) {
+                openVideoModal(latestSpotlight);
+            }
+        }
+
+        function rollRandomVideo() {
+            if (!channelVideos || channelVideos.length === 0) return;
+            const randomIndex = Math.floor(Math.random() * channelVideos.length);
+            const picked = channelVideos[randomIndex];
+            showToast(`🎲 Tanlandi: "${picked.title.slice(0, 32)}..."`);
+            setTimeout(() => {
+                openVideoModal(picked);
+            }, 500);
+        }
+
+        function setCategory(cat, element) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if (element) element.classList.add('active');
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('search-video-input').value.toLowerCase().trim();
+            let filtered = [...channelVideos];
+
+            if (currentFilter === 'popular') {
+                filtered.sort((a, b) => (b.viewsNum || 0) - (a.viewsNum || 0));
+            } else if (currentFilter === 'sinov') {
+                filtered = filtered.filter(v => v.category === 'sinov');
+            } else if (currentFilter === 'sarguzasht') {
+                filtered = filtered.filter(v => v.category === 'sarguzasht');
+            } else if (currentFilter === 'ibratli') {
+                filtered = filtered.filter(v => v.category === 'ibratli');
+            }
+
+            if (query) {
+                filtered = filtered.filter(v => v.title.toLowerCase().includes(query));
+            }
+
+            renderGallery(filtered);
+        }
+
+        function renderGallery(videos) {
+            const shelf = document.getElementById('videos-shelf');
+            if (!videos || videos.length === 0) {
+                shelf.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
+                        <i class="fa-solid fa-clapperboard" style="font-size: 42px; margin-bottom: 12px; display: block; color: var(--primary);"></i>
+                        Mos keluvchi videolar topilmadi.
+                    </div>
+                `;
+                return;
+            }
+
+            shelf.innerHTML = videos.map((v, index) => {
+                const isNewest = index === 0 && currentFilter === 'all';
+                const isHot = (v.viewsNum || 0) > 80000;
+                const ago = timeAgo(v.published);
+
+                return `
+                <div class="video-card-element" onclick='openVideoModal(${JSON.stringify(v).replace(/'/g, "&#39;")})'>
+                    ${isNewest ? '<span class="corner-tag tag-just-in"><i class="fa-solid fa-sparkles"></i> Yangi</span>' : ''}
+                    ${!isNewest && isHot ? '<span class="corner-tag tag-top-hot"><i class="fa-solid fa-fire"></i> Top</span>' : ''}
+                    
+                    <div class="card-poster-wrap">
+                        <img src="${v.thumbnail}" 
+                             onerror="this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'" 
+                             alt="${v.title}" 
+                             loading="lazy">
+                        <div class="poster-play-tag">
+                            <span><i class="fa-solid fa-play"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-info-pane">
+                        <h3 class="video-heading" title="${v.title}">${v.title}</h3>
+                        <div class="card-stats-footer">
+                            <span><i class="fa-regular fa-eye"></i> ${v.views}</span>
+                            <span><i class="fa-regular fa-clock"></i> ${ago}</span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        async function syncLive(manual = false) {
+            const syncIcon = document.getElementById('sync-icon');
+            if (manual && syncIcon) syncIcon.classList.add('fa-spin');
+
+            try {
+                const res = await fetch('/api/channel', { cache: 'no-store' });
+                if (!res.ok) throw new Error('API serveri xatosi');
+                const data = await res.json();
+
+                // 1. Metrics & Stats
+                if (data.subscribers) {
+                    document.getElementById('metric-subs').innerText = data.subscribers;
+                }
+                if (data.totalViews) {
+                    document.getElementById('metric-views').innerText = data.totalViews;
+                }
+                if (data.videoCount) {
+                    document.getElementById('metric-videos').innerText = data.videoCount + ' ta';
+                }
+                if (data.nextGoal) {
+                    document.getElementById('metric-goal').innerText = data.nextGoal;
+                    document.getElementById('milestone-target-text').innerText = data.nextGoal + ' Obunachi';
+                }
+                if (data.progressPercent) {
+                    document.getElementById('milestone-percent-text').innerHTML = `<i class="fa-solid fa-percent"></i> ${data.progressPercent}% erishildi`;
+                    document.getElementById('milestone-progress-fill').style.width = data.progressPercent + '%';
+                }
+                if (data.avatarUrl) {
+                    document.getElementById('channel-avatar').src = data.avatarUrl;
+                }
+
+                // 2. Videos list & Spotlight
+                if (data.videos && data.videos.length > 0) {
+                    channelVideos = data.videos;
+                    latestSpotlight = data.videos[0];
+
+                    document.getElementById('spotlight-poster').src = latestSpotlight.thumbnailMax || latestSpotlight.thumbnail;
+                    document.getElementById('spotlight-video-title').innerText = latestSpotlight.title;
+                    document.getElementById('spotlight-yt-external').href = latestSpotlight.url;
+
+                    applyFilters();
+                }
+
+                if (manual) {
+                    showToast("YouTube'dan eng yangi ma'lumotlar yuklandi!");
+                }
+            } catch (err) {
+                console.error("Sinxronizatsiya xatosi:", err);
+            } finally {
+                if (manual && syncIcon) {
+                    setTimeout(() => syncIcon.classList.remove('fa-spin'), 600);
+                }
+            }
+        }
+
+        // Ilk yuklash
+        syncLive();
+
+        // Har 15 soniyada fonda YouTube bilan jonli sinxronizatsiya
+        setInterval(() => {
+            syncLive();
+        }, 15000);
+    </script>
+</body>
+</html>
