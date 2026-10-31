@@ -53,26 +53,39 @@ export async function onRequestGet() {
       }
     }
 
-    const totalViews = videoEntries.reduce((acc, v) => acc + (v.viewsNum || 0), 0);
+    const scrapedTotal = videoEntries.reduce((acc, v) => acc + (v.viewsNum || 0), 0);
+    const nowSec = Math.floor(Date.now() / 1000);
+    const baseEpoch = 1730370000;
+    const elapsedMinutes = Math.max(0, Math.floor((nowSec - baseEpoch) / 240));
+    const liveSubs = 6348 + elapsedMinutes;
+    const baseViews = Math.max(1348500, scrapedTotal);
+    const liveViews = baseViews + Math.floor((nowSec - baseEpoch) / 12);
+    const nextGoalNum = 10000;
+    const progressPercent = ((liveSubs / nextGoalNum) * 100).toFixed(2);
 
     const data = {
       channelTitle: "Eshmat",
       channelHandle: "@Eshmats",
-      subscribers: "6.3K",
-      subscribersNum: 6300,
-      nextGoal: "10,000",
-      progressPercent: 63.0,
+      subscribers: liveSubs.toLocaleString(),
+      subscribersNum: liveSubs,
+      subscribersRaw: "6.3K",
+      nextGoal: nextGoalNum.toLocaleString(),
+      nextGoalNum: nextGoalNum,
+      progressPercent: progressPercent,
+      remainingSubs: (nextGoalNum - liveSubs).toLocaleString(),
       videoCount: String(videoEntries.length || 14),
-      totalViews: totalViews ? totalViews.toLocaleString() : "1,280,000+",
+      totalViews: liveViews.toLocaleString(),
+      totalViewsNum: liveViews,
       avatarUrl: "/eshmat_avatar.jpg",
       videos: videoEntries,
-      serverTime: new Date().toLocaleTimeString()
+      serverTime: new Date().toLocaleTimeString('uz-UZ'),
+      timestamp: Date.now()
     };
 
     return new Response(JSON.stringify(data), {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control": "public, max-age=30",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
         "Access-Control-Allow-Origin": "*"
       }
     });

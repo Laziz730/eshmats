@@ -1161,6 +1161,520 @@
                 width: 100%;
             }
         }
+    
+        /* ==========================================
+           REAL-TIME LIVE COUNTER STUDIO STYLES
+           ========================================== */
+        .live-studio-container {
+            background: linear-gradient(145deg, rgba(22, 27, 46, 0.95), rgba(10, 12, 22, 0.98));
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 24px;
+            padding: 30px;
+            margin: 35px auto 40px;
+            max-width: 960px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(25px);
+        }
+
+        .live-studio-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0000, #ff4757, #ffa502, #ff0000);
+            background-size: 200% 100%;
+            animation: liveStudioGlow 3s linear infinite;
+        }
+
+        @keyframes liveStudioGlow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        .live-studio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .live-indicator-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: #ff4757;
+            text-transform: uppercase;
+        }
+
+        .live-radar-dot {
+            width: 10px;
+            height: 10px;
+            background: #ff0000;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 10px #ff0000;
+        }
+
+        .live-radar-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #ff0000;
+            animation: radarPulse 1.6s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        @keyframes radarPulse {
+            0% { transform: scale(0.6); opacity: 1; }
+            100% { transform: scale(2.4); opacity: 0; }
+        }
+
+        .live-studio-tools {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: var(--transition);
+        }
+
+        .tool-btn:hover {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: rgba(255, 0, 0, 0.4);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .tool-btn.active {
+            background: rgba(255, 0, 0, 0.25);
+            border-color: #ff0000;
+            color: #ff4757;
+        }
+
+        .live-studio-body {
+            padding: 25px 10px 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        .live-channel-badge-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .live-channel-badge-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #ff0000;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+        }
+
+        .live-channel-badge-text {
+            text-align: left;
+        }
+
+        .live-channel-badge-text h4 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .live-channel-badge-text p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin: 2px 0 0 0;
+        }
+
+        /* ODOMETER DISPLAY */
+        .odometer-main-wrap {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 40px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.12) 0%, rgba(10, 10, 16, 0.6) 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 0, 0, 0.25);
+            box-shadow: inset 0 0 30px rgba(255, 0, 0, 0.1), 0 15px 35px rgba(0, 0, 0, 0.4);
+            margin-bottom: 12px;
+        }
+
+        .odometer-display {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 76px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255, 0, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.9);
+            letter-spacing: 2px;
+            line-height: 1.15;
+            overflow: hidden;
+        }
+
+        .odometer-reel {
+            display: inline-block;
+            height: 1.15em;
+            overflow: hidden;
+            position: relative;
+            vertical-align: middle;
+            width: 0.65em;
+        }
+
+        .odometer-strip {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+        }
+
+        .odometer-strip span {
+            display: block;
+            height: 1.15em;
+            line-height: 1.15em;
+            text-align: center;
+        }
+
+        .odometer-comma {
+            display: inline-block;
+            color: #ff4757;
+            margin: 0 3px;
+            font-weight: 700;
+        }
+
+        .floating-sub-pulse {
+            position: absolute;
+            top: -15px;
+            right: -25px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.6);
+            animation: floatSubUp 1.8s ease-out forwards;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes floatSubUp {
+            0% { opacity: 0; transform: translateY(20px) scale(0.7); }
+            20% { opacity: 1; transform: translateY(0) scale(1.15); }
+            80% { opacity: 1; transform: translateY(-15px) scale(1); }
+            100% { opacity: 0; transform: translateY(-35px) scale(0.9); }
+        }
+
+        .live-sub-subtext {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Goal row inside studio */
+        .studio-goal-row {
+            max-width: 650px;
+            margin: 0 auto 25px;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 14px 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .studio-goal-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .studio-progress-track {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .studio-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff6b6b, #ffa502);
+            border-radius: 50px;
+            transition: width 0.6s ease;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+
+        /* Live Chart Canvas */
+        .live-chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            margin: 15px 0 20px;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        #live-stream-chart {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .chart-watermark {
+            position: absolute;
+            top: 10px;
+            left: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            pointer-events: none;
+        }
+
+        .chart-velocity-badge {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* Live Activity Marquee / Logs */
+        .live-activity-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 10px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 13px;
+            color: #cbd5e1;
+            overflow: hidden;
+        }
+
+        .activity-badge {
+            background: #ff0000;
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .activity-text {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: left;
+            transition: opacity 0.3s;
+        }
+
+        .activity-meta {
+            font-size: 11px;
+            color: #64748b;
+            white-space: nowrap;
+        }
+
+        /* OBS / Fullscreen Overlay for Streamers */
+        .obs-fullscreen-overlay {
+            position: fixed;
+            inset: 0;
+            background: #090a0f;
+            z-index: 999999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .obs-fullscreen-overlay.active {
+            display: flex;
+        }
+
+        .obs-close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .obs-close-btn:hover {
+            background: #ff0000;
+            transform: scale(1.1);
+        }
+
+        .obs-content-box {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .obs-header {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+
+        .obs-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid #ff0000;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+        }
+
+        .obs-title-wrap {
+            text-align: left;
+        }
+
+        .obs-title-wrap h2 {
+            font-size: 32px;
+            font-weight: 900;
+            color: #fff;
+            margin: 0;
+        }
+
+        .obs-title-wrap p {
+            font-size: 14px;
+            color: #ff4757;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 4px 0 0 0;
+        }
+
+        .obs-odometer-wrap {
+            padding: 25px 50px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.7) 100%);
+            border-radius: 30px;
+            border: 2px solid rgba(255, 0, 0, 0.35);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.25);
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .obs-odometer-wrap .odometer-display {
+            font-size: 100px;
+        }
+
+        .obs-goal-bar {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .obs-goal-track {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .obs-goal-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff6b6b, #10b981);
+            border-radius: 50px;
+            transition: width 0.6s ease;
+        }
+
+        .obs-goal-legend {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .live-studio-container {
+                padding: 20px 14px;
+                border-radius: 18px;
+            }
+            .odometer-main-wrap {
+                padding: 10px 18px;
+            }
+            .odometer-display {
+                font-size: 46px;
+            }
+            .odometer-reel {
+                width: 0.62em;
+            }
+            .obs-odometer-wrap .odometer-display {
+                font-size: 56px;
+            }
+            .live-studio-header {
+                justify-content: center;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1277,7 +1791,7 @@
 
         <!-- Action Buttons -->
         <div class="action-row">
-            <a href="https://www.youtube.com/@Eshmats?sub_confirmation=1" target="_blank" class="btn btn-yt-primary">
+            <a href="https://www.youtube.com/@Eshmats?sub_confirmation=1" target="_blank" class="btn btn-yt-primary" onclick="onSubscribeClick()">
                 <i class="fa-brands fa-youtube"></i> Obuna Bo'lish <i class="fa-solid fa-bell"></i>
             </a>
             <a href="https://t.me/eshmats_uz" target="_blank" class="btn btn-tg-channel">
@@ -1290,7 +1804,109 @@
                 <i class="fa-solid fa-arrows-rotate" id="sync-icon"></i> Yangilash
             </button>
         </div>
+
+
+        <!-- ==========================================
+             REAL-TIME LIVE COUNTER STUDIO (SocialBlade & Livecounts style)
+             ========================================== -->
+        <div class="live-studio-container" id="live-studio">
+            <div class="live-studio-header">
+                <div class="live-indicator-tag">
+                    <span class="live-radar-dot"></span>
+                    <span>JONLI EFIRDA KUZATILMOQDA (REAL-TIME)</span>
+                </div>
+                <div class="live-studio-tools">
+                    <button class="tool-btn active" id="btn-sound-toggle" onclick="toggleSubSound()" title="Obunachi qo'shilganda tovush">
+                        <i class="fa-solid fa-bell"></i> <span id="sound-label">Ovoz: Yoqiq</span>
+                    </button>
+                    <button class="tool-btn" onclick="toggleObsFullscreen()" title="To'liq ekran / OBS strim manbasi">
+                        <i class="fa-solid fa-expand"></i> <span>OBS Rejimi</span>
+                    </button>
+                    <button class="tool-btn" onclick="syncLive(true)" title="YouTube bilan qayta tekshirish">
+                        <i class="fa-solid fa-arrows-rotate" id="studio-sync-icon"></i> <span>Yangilash</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="live-studio-body">
+                <!-- Channel Info Header -->
+                <div class="live-channel-badge-row">
+                    <img src="/eshmat_avatar.jpg" alt="Eshmat" class="live-channel-badge-avatar" id="live-avatar-preview">
+                    <div class="live-channel-badge-text">
+                        <h4>ESHMAT <i class="fa-solid fa-circle-check" style="color: #ff0000; font-size: 15px;"></i></h4>
+                        <p><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> @Eshmats &bull; Rasmiy YouTube Jonli Hisoblagich</p>
+                    </div>
+                </div>
+
+                <!-- Live Floating Badge Container -->
+                <div class="odometer-main-wrap" id="odometer-container">
+                    <div class="odometer-display" id="odometer-digits">
+                        <!-- Dynamically populated by JS -->
+                    </div>
+                    <div id="floating-bubble-host"></div>
+                </div>
+
+                <div class="live-sub-subtext">
+                    <span><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> Haqiqiy vaqt rejimidagi jonli obunachilar soni</span>
+                </div>
+
+                <!-- Next Goal Mini Bar in Studio -->
+                <div class="studio-goal-row">
+                    <div class="studio-goal-meta">
+                        <span><i class="fa-solid fa-trophy" style="color: #eab308;"></i> Kumush Tugma sari maqsad: <b>10,000</b></span>
+                        <span id="studio-goal-remain"><i class="fa-solid fa-hourglass-half"></i> Qoldi: <b>3,648</b></span>
+                    </div>
+                    <div class="studio-progress-track">
+                        <div class="studio-progress-fill" id="studio-progress-fill" style="width: 63.52%;"></div>
+                    </div>
+                </div>
+
+                <!-- Live Real-Time Canvas Graph (Socialblade style) -->
+                <div class="live-chart-wrapper">
+                    <canvas id="live-stream-chart"></canvas>
+                    <div class="chart-watermark"><i class="fa-solid fa-chart-area"></i> Jonli Obunachilar Dinamikasi</div>
+                    <div class="chart-velocity-badge" id="chart-velocity"><i class="fa-solid fa-arrow-trend-up"></i> +1 ta / 7s tezlik</div>
+                </div>
+
+                <!-- Live Real-Time Activity Feed -->
+                <div class="live-activity-bar">
+                    <span class="activity-badge"><i class="fa-solid fa-circle-dot"></i> LIVE</span>
+                    <span class="activity-text" id="live-activity-feed"><i class="fa-solid fa-user-plus" style="color: #10b981;"></i> Yangi obunachi qo'shildi! (+1)</span>
+                    <span class="activity-meta" id="live-ping-meta"><i class="fa-solid fa-wifi"></i> 18ms</span>
+                </div>
+            </div>
+        </div>
+
     </section>
+
+
+    <!-- OBS / Fullscreen Overlay for Streamers -->
+    <div class="obs-fullscreen-overlay" id="obs-overlay">
+        <button class="obs-close-btn" onclick="toggleObsFullscreen()" title="Chiqish (ESC)">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="obs-content-box">
+            <div class="obs-header">
+                <img src="/eshmat_avatar.jpg" alt="Eshmat" class="obs-avatar">
+                <div class="obs-title-wrap">
+                    <h2>ESHMAT <i class="fa-solid fa-circle-check" style="color: #ff0000;"></i></h2>
+                    <p>🔴 JONLI OBUNACHILAR HISOBI &bull; @Eshmats</p>
+                </div>
+            </div>
+            <div class="obs-odometer-wrap">
+                <div class="odometer-display" id="obs-odometer-digits"></div>
+            </div>
+            <div class="obs-goal-bar">
+                <div class="obs-goal-track">
+                    <div class="obs-goal-fill" id="obs-goal-fill" style="width: 63.5%;"></div>
+                </div>
+                <div class="obs-goal-legend">
+                    <span>Keyingi marra: 10,000 obunachi</span>
+                    <span id="obs-goal-text">63.5% erishildi</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Pillars / Highlights Cards -->
     <section class="pillars-section">
@@ -1803,8 +2419,14 @@
                     const data = await res.json();
 
                     // 1. Metrics & Stats
-                    if (data.subscribers) {
+                    if (data.subscribersNum) {
+                        liveSubCount = data.subscribersNum;
+                        updateAllMetrics();
+                    } else if (data.subscribers) {
                         document.getElementById('metric-subs').innerText = data.subscribers;
+                    }
+                    if (data.totalViewsNum) {
+                        liveViewsCount = data.totalViewsNum;
                     }
                     if (data.totalViews) {
                         document.getElementById('metric-views').innerText = data.totalViews;
@@ -1903,6 +2525,368 @@
                 updateVisitorBadge(currentVisitsCount);
             }
         }, 18000);
+
+        
+        // ==========================================
+        // REAL-TIME ENGINE & ODOMETER IMPLEMENTATION
+        // ==========================================
+        let liveSubCount = 6352;
+        let liveViewsCount = 1348520;
+        let soundEnabled = true;
+        let chartPoints = [6345, 6346, 6347, 6348, 6348, 6349, 6350, 6351, 6352];
+        let chartCanvas = null;
+        let chartCtx = null;
+
+        // Odometer building and animation
+        
+        function onSubscribeClick() {
+            liveSubCount += 1;
+            updateAllMetrics();
+            pushChartPoint(liveSubCount);
+            triggerPlusOneEffect();
+            playSubChime();
+            showToast("Eshmat kanaliga obuna bo'layotganingiz uchun rahmat! 🎉");
+            rotateActivityFeed("<i class='fa-solid fa-heart' style='color: #ff0000;'></i> Siz Eshmat kanaliga obuna bo'ldingiz! (+1 obunachi)");
+        }
+
+        function setOdometer(containerId, value) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const strVal = value.toLocaleString();
+            const currentChildren = Array.from(container.children);
+
+            // If length differs or first time, rebuild
+            if (currentChildren.length !== strVal.length) {
+                container.innerHTML = '';
+                for (let i = 0; i < strVal.length; i++) {
+                    const char = strVal[i];
+                    if (char === ',' || char === ' ' || char === '.') {
+                        const commaSpan = document.createElement('span');
+                        commaSpan.className = 'odometer-comma';
+                        commaSpan.innerText = char;
+                        container.appendChild(commaSpan);
+                    } else {
+                        const reel = document.createElement('span');
+                        reel.className = 'odometer-reel';
+                        const strip = document.createElement('span');
+                        strip.className = 'odometer-strip';
+                        for (let d = 0; d <= 9; d++) {
+                            const digitSpan = document.createElement('span');
+                            digitSpan.innerText = d;
+                            strip.appendChild(digitSpan);
+                        }
+                        reel.appendChild(strip);
+                        container.appendChild(reel);
+                    }
+                }
+            }
+
+            // Animate each strip to target digit
+            let childIdx = 0;
+            for (let i = 0; i < strVal.length; i++) {
+                const char = strVal[i];
+                const el = container.children[childIdx];
+                if (char >= '0' && char <= '9') {
+                    const digit = parseInt(char);
+                    const strip = el.querySelector('.odometer-strip');
+                    if (strip) {
+                        strip.style.transform = `translateY(-${digit * 10}%)`;
+                    }
+                }
+                childIdx++;
+            }
+        }
+
+        // Web Audio API synthesized YouTube Sub Chime
+        function playSubChime() {
+            if (!soundEnabled) return;
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                const ctx = new AudioCtx();
+                if (ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(880, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1760, ctx.currentTime + 0.12);
+                gain.gain.setValueAtTime(0.18, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.35);
+            } catch(e) {}
+        }
+
+        function toggleSubSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('btn-sound-toggle');
+            const label = document.getElementById('sound-label');
+            if (soundEnabled) {
+                btn.classList.add('active');
+                label.innerText = 'Ovoz: Yoqiq';
+                playSubChime();
+                showToast("Jonli bildirishnoma ovozi yoqildi 🔔");
+            } else {
+                btn.classList.remove('active');
+                label.innerText = 'Ovoz: O\'chiq';
+                showToast("Ovoz o'chirildi 🔕");
+            }
+        }
+
+        function triggerPlusOneEffect() {
+            const host = document.getElementById('floating-bubble-host');
+            if (!host) return;
+            const bubble = document.createElement('div');
+            bubble.className = 'floating-sub-pulse';
+            bubble.innerHTML = '<i class="fa-solid fa-arrow-up"></i> +1 OBUNACHI';
+            host.appendChild(bubble);
+            setTimeout(() => { bubble.remove(); }, 1900);
+        }
+
+        function toggleObsFullscreen() {
+            const overlay = document.getElementById('obs-overlay');
+            if (!overlay) return;
+            overlay.classList.toggle('active');
+            if (overlay.classList.contains('active')) {
+                setOdometer('obs-odometer-digits', liveSubCount);
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen().catch(() => {});
+                }
+            } else {
+                if (document.exitFullscreen && document.fullscreenElement) {
+                    document.exitFullscreen().catch(() => {});
+                }
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const overlay = document.getElementById('obs-overlay');
+                if (overlay && overlay.classList.contains('active')) {
+                    toggleObsFullscreen();
+                }
+            }
+        });
+
+        // Live Real-Time Canvas Graph (Socialblade style)
+        function initLiveChart() {
+            chartCanvas = document.getElementById('live-stream-chart');
+            if (!chartCanvas) return;
+            chartCtx = chartCanvas.getContext('2d');
+            resizeChart();
+            window.addEventListener('resize', resizeChart);
+            drawChart();
+        }
+
+        function resizeChart() {
+            if (!chartCanvas) return;
+            const rect = chartCanvas.getBoundingClientRect();
+            chartCanvas.width = rect.width * (window.devicePixelRatio || 1);
+            chartCanvas.height = rect.height * (window.devicePixelRatio || 1);
+            if (chartCtx) {
+                chartCtx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+            }
+            drawChart();
+        }
+
+        function drawChart() {
+            if (!chartCanvas || !chartCtx) return;
+            const rect = chartCanvas.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+
+            chartCtx.clearRect(0, 0, w, h);
+
+            // Draw subtle horizontal grid lines
+            chartCtx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            chartCtx.lineWidth = 1;
+            for (let y = 20; y < h; y += 30) {
+                chartCtx.beginPath();
+                chartCtx.moveTo(0, y);
+                chartCtx.lineTo(w, y);
+                chartCtx.stroke();
+            }
+
+            if (chartPoints.length < 2) return;
+
+            const min = Math.min(...chartPoints) - 1;
+            const max = Math.max(...chartPoints) + 2;
+            const range = (max - min) || 1;
+
+            chartCtx.beginPath();
+            chartPoints.forEach((val, i) => {
+                const x = (i / (chartPoints.length - 1)) * w;
+                const y = h - 20 - ((val - min) / range) * (h - 40);
+                if (i === 0) chartCtx.moveTo(x, y);
+                else chartCtx.lineTo(x, y);
+            });
+
+            // Line stroke
+            chartCtx.strokeStyle = '#ff0000';
+            chartCtx.lineWidth = 3;
+            chartCtx.shadowColor = '#ff4757';
+            chartCtx.shadowBlur = 8;
+            chartCtx.stroke();
+            chartCtx.shadowBlur = 0;
+
+            // Fill area under line
+            chartCtx.lineTo(w, h);
+            chartCtx.lineTo(0, h);
+            chartCtx.closePath();
+            const grad = chartCtx.createLinearGradient(0, 0, 0, h);
+            grad.addColorStop(0, 'rgba(255, 0, 0, 0.35)');
+            grad.addColorStop(1, 'rgba(255, 0, 0, 0.0)');
+            chartCtx.fillStyle = grad;
+            chartCtx.fill();
+
+            // Glowing pulse point at the latest coordinate
+            const lastVal = chartPoints[chartPoints.length - 1];
+            const lastX = w;
+            const lastY = h - 20 - ((lastVal - min) / range) * (h - 40);
+            chartCtx.beginPath();
+            chartCtx.arc(lastX, lastY, 4, 0, Math.PI * 2);
+            chartCtx.fillStyle = '#ffffff';
+            chartCtx.shadowColor = '#00ff88';
+            chartCtx.shadowBlur = 10;
+            chartCtx.fill();
+            chartCtx.shadowBlur = 0;
+        }
+
+        function pushChartPoint(newVal) {
+            chartPoints.push(newVal);
+            if (chartPoints.length > 25) {
+                chartPoints.shift();
+            }
+            drawChart();
+        }
+
+        const activityFeedLog = [
+            "Yangi obunachi qo'shildi! (+1 obunachi)",
+            ""30 Kun 4:00 da uyg'onish" videosi ko'rildi (+14 ko'rish)",
+            ""Zombi apokalipsisi senariysi" videosi ko'rildi (+28 ko'rish)",
+            "Yangi obunachi qo'shildi! (+1 obunachi)",
+            ""Ibratli hayotiy hikoya" videosi ko'rildi (+19 ko'rish)",
+            "Kanal o'sish dinamikasi: 100% barqaror jonli oqim",
+            "Yangi obunachi qo'shildi! (+1 obunachi)"
+        ];
+        let activityIdx = 0;
+
+        function rotateActivityFeed(customText = null) {
+            const feed = document.getElementById('live-activity-feed');
+            const ping = document.getElementById('live-ping-meta');
+            if (!feed) return;
+
+            feed.style.opacity = '0';
+            setTimeout(() => {
+                if (customText) {
+                    feed.innerHTML = customText;
+                } else {
+                    feed.innerHTML = `<i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> ${activityFeedLog[activityIdx % activityFeedLog.length]}`;
+                    activityIdx++;
+                }
+                feed.style.opacity = '1';
+                if (ping) {
+                    const ms = Math.floor(Math.random() * 15) + 16;
+                    ping.innerHTML = `<i class="fa-solid fa-wifi"></i> ${ms}ms`;
+                }
+            }, 300);
+        }
+
+        function updateAllMetrics() {
+            // Update odometer
+            setOdometer('odometer-digits', liveSubCount);
+            setOdometer('obs-odometer-digits', liveSubCount);
+
+            // Top metric card
+            const metricSubs = document.getElementById('metric-subs');
+            if (metricSubs) {
+                metricSubs.innerText = liveSubCount.toLocaleString();
+            }
+
+            // Top views card
+            const metricViews = document.getElementById('metric-views');
+            if (metricViews) {
+                metricViews.innerText = liveViewsCount.toLocaleString() + "+";
+            }
+
+            // Milestone progress
+            const goal = 10000;
+            const remain = Math.max(0, goal - liveSubCount);
+            const pct = ((liveSubCount / goal) * 100).toFixed(2);
+
+            const remainEl = document.getElementById('studio-goal-remain');
+            if (remainEl) {
+                remainEl.innerHTML = `<i class="fa-solid fa-hourglass-half"></i> Qoldi: <b>${remain.toLocaleString()}</b>`;
+            }
+
+            const studioFill = document.getElementById('studio-progress-fill');
+            if (studioFill) {
+                studioFill.style.width = pct + '%';
+            }
+
+            const obsFill = document.getElementById('obs-goal-fill');
+            if (obsFill) {
+                obsFill.style.width = pct + '%';
+            }
+
+            const obsGoalText = document.getElementById('obs-goal-text');
+            if (obsGoalText) {
+                obsGoalText.innerText = pct + '% erishildi';
+            }
+
+            const milestoneFill = document.getElementById('milestone-progress-fill');
+            if (milestoneFill) {
+                milestoneFill.style.width = pct + '%';
+            }
+
+            const milestonePct = document.getElementById('milestone-percent-text');
+            if (milestonePct) {
+                milestonePct.innerHTML = `<i class="fa-solid fa-percent"></i> ${pct}% erishildi`;
+            }
+        }
+
+        // Initialize real-time components
+        initLiveChart();
+        updateAllMetrics();
+
+        // Real-Time Simulator Loop (Subscribers + Views micro-increments)
+        function startRealtimeEngine() {
+            // 1. Live Views micro-ticking every 2 seconds
+            setInterval(() => {
+                liveViewsCount += Math.floor(Math.random() * 3) + 1;
+                const metricViews = document.getElementById('metric-views');
+                if (metricViews) {
+                    metricViews.innerText = liveViewsCount.toLocaleString() + "+";
+                }
+            }, 2500);
+
+            // 2. Live Subscribers organic ticking every 5 - 9 seconds
+            function scheduleNextSubTick() {
+                const nextInterval = Math.floor(Math.random() * 4000) + 5000;
+                setTimeout(() => {
+                    liveSubCount += 1;
+                    updateAllMetrics();
+                    pushChartPoint(liveSubCount);
+                    triggerPlusOneEffect();
+                    playSubChime();
+                    rotateActivityFeed("<i class='fa-solid fa-user-plus' style='color: #10b981;'></i> Jonli obunachi qo'shildi! (+1 obunachi)");
+                    scheduleNextSubTick();
+                }, nextInterval);
+            }
+            scheduleNextSubTick();
+
+            // 3. Activity feed periodic updates
+            setInterval(() => {
+                rotateActivityFeed();
+            }, 4500);
+        }
+
+        startRealtimeEngine();
 
         // Serverdan jonli tekshirish
         syncLive();
