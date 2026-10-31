@@ -3,2349 +3,1524 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESHMAT | Rasmiy Veb-Portali & Jonli Video Galereya</title>
+    <title>Eshmat | Rasmiy YouTube Kanali Portali</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="eshmat_avatar.jpg">
+    <!-- Meta tags for SEO & Social Sharing -->
+    <meta name="description" content="Eshmat rasmiy YouTube kanali portali. 30 kunlik sinovlar, sarguzashtlar, qiziqarli senariylar va ibratli hikoyalar.">
+    <meta name="keywords" content="Eshmat, Eshmats, YouTube, O'zbekcha videolar, 30 kunlik sinov, qiziqarli senariy, ibratli hikoyalar">
+    <meta name="author" content="@Laziz_Abduahadov">
+    <link rel="canonical" href="https://eshmats.pages.dev">
+    
+    <!-- Open Graph / Telegram -->
+    <meta property="og:title" content="Eshmat | Rasmiy YouTube Kanali">
+    <meta property="og:description" content="Ibratli hikoyalar, qiziqarli senariylar va 30 kunlik intizom sinovlari olami.">
+    <meta property="og:image" content="https://eshmats.pages.dev/eshmat_avatar.jpg">
+    <meta property="og:url" content="https://eshmats.pages.dev">
+    <meta property="og:type" content="website">
 
-    <!-- FontAwesome 6 Pro CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Google Fonts -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/eshmat_avatar.jpg">
+
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --primary: #ff1122;
-            --primary-glow: rgba(255, 17, 34, 0.45);
-            --primary-dark: #cc0011;
-            --bg-main: #0a0a0d;
-            --bg-card: #131317;
-            --bg-card-hover: #1a1a22;
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --accent-tg: #0088cc;
-            --accent-green: #10b981;
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 17, 34, 0.5);
+            --bg-base: #090a0f;
+            --bg-surface: #10121a;
+            --bg-surface-elevated: #161924;
+            --bg-card: rgba(18, 21, 31, 0.75);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.18);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --yt-red: #ff0033;
+            --yt-red-hover: #e0002d;
+            --yt-red-subtle: rgba(255, 0, 51, 0.1);
+            
+            --blue-accent: #38bdf8;
+            --blue-subtle: rgba(56, 189, 248, 0.1);
+            --green-accent: #10b981;
+            --gold-accent: #f59e0b;
+            
             --radius-sm: 8px;
             --radius-md: 14px;
-            --radius-lg: 22px;
-            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            
+            --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            --container-max: 1240px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-main);
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-base);
             color: var(--text-primary);
-            overflow-x: hidden;
             line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 0, 51, 0.1), transparent),
+                radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.04), transparent);
+            background-repeat: no-repeat;
         }
 
-        /* Ambient Glowing Background Effect */
-        .ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1100px;
-            height: 480px;
-            background: radial-gradient(circle, rgba(255, 17, 34, 0.18) 0%, rgba(10, 10, 13, 0) 70%);
-            pointer-events: none;
-            z-index: 0;
+        /* Clean Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232736;
+            border-radius: var(--radius-full);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333a4f;
         }
 
-        /* Top Announcement Developer Ribbon */
-        .dev-ribbon {
-            background: linear-gradient(90deg, #180005, #26080d, #180005);
-            border-bottom: 1px solid rgba(255, 17, 34, 0.3);
-            padding: 9px 20px;
-            font-size: 13px;
-            position: relative;
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        .dev-ribbon-text {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #d1d5db;
-        }
-
-        .dev-badge-link {
-            color: #ff4d5a;
-            text-decoration: none;
-            font-weight: 700;
-            background: rgba(255, 17, 34, 0.15);
-            padding: 3px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 17, 34, 0.35);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: var(--transition);
-        }
-
-        .dev-badge-link:hover {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        /* Header Navbar */
+        /* HEADER */
         header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(10, 10, 13, 0.88);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 45px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(9, 10, 15, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
-        .nav-brand {
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .brand-link {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            font-size: 22px;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: 0.5px;
+            color: inherit;
         }
 
-        .brand-icon-box {
+        .brand-avatar {
             width: 38px;
             height: 38px;
-            background: linear-gradient(135deg, var(--primary), #b30010);
-            border-radius: 10px;
+            border-radius: var(--radius-full);
+            object-fit: cover;
+            border: 2px solid var(--yt-red);
+        }
+
+        .brand-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 16px;
-            box-shadow: 0 4px 18px var(--primary-glow);
+            gap: 6px;
+        }
+
+        .verified-badge {
+            color: #38bdf8;
+            font-size: 14px;
         }
 
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: 28px;
         }
 
-        .nav-item {
+        .nav-link {
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 14px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
+            font-weight: 500;
             transition: var(--transition);
-        }
-
-        .nav-item:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .live-status-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            color: #34d399;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-left: 10px;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-green);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-green);
-            animation: pulse-dot 1.5s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            50% { transform: scale(1.3); opacity: 1; }
-            100% { transform: scale(0.9); opacity: 0.7; }
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            z-index: 1;
-            padding: 55px 20px 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .avatar-container {
-            position: relative;
-            margin-bottom: 22px;
-        }
-
-        .avatar-glow-ring {
-            width: 175px;
-            height: 175px;
-            border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--primary), #ff606e, var(--primary));
-            box-shadow: 0 0 45px var(--primary-glow);
-            transition: transform 0.3s ease;
-        }
-
-        .avatar-glow-ring:hover {
-            transform: scale(1.04);
-        }
-
-        .avatar-glow-ring img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            background: #000;
-        }
-
-        .badge-verified-creator {
-            position: absolute;
-            bottom: 6px;
-            right: 6px;
-            background: #fff;
-            color: var(--primary);
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 17px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+            gap: 7px;
         }
 
-        .channel-name-wrapper {
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
         }
 
-        .channel-name-wrapper h1 {
-            font-size: 46px;
-            font-weight: 900;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 9px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--yt-red);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: var(--yt-red-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(255, 0, 51, 0.35);
+        }
+
+        .btn-secondary {
+            background: var(--bg-surface-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+        }
+        .btn-secondary:hover {
+            background: #1c2130;
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        /* HERO */
+        .hero-section {
+            padding: 56px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: #34d399;
+            padding: 5px 14px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin-bottom: 22px;
+        }
+
+        .dot-green {
+            width: 7px;
+            height: 7px;
+            background: #10b981;
+            border-radius: var(--radius-full);
+            box-shadow: 0 0 8px #10b981;
+        }
+
+        .hero-avatar-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 18px;
+        }
+
+        .hero-avatar {
+            width: 104px;
+            height: 104px;
+            border-radius: var(--radius-full);
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-avatar-badge {
+            position: absolute;
+            bottom: 3px;
+            right: 3px;
+            background: var(--yt-red);
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            border: 2px solid var(--bg-base);
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .hero-handle {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .hero-lead {
+            max-width: 620px;
+            margin: 0 auto 32px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+
+        /* METRICS GRID - CLEAN & ELEGANT */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            max-width: 860px;
+            margin: 0 auto 24px;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 22px 18px;
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .metric-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .metric-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .icon-red { background: var(--yt-red-subtle); color: var(--yt-red); }
+        .icon-blue { background: var(--blue-subtle); color: var(--blue-accent); }
+        .icon-purple { background: rgba(168, 85, 247, 0.1); color: #c084fc; }
+
+        .metric-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .metric-subtext {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Milestone Bar */
+        .milestone-container {
+            max-width: 860px;
+            margin: 0 auto 52px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 14px 20px;
+            backdrop-filter: blur(12px);
+        }
+
+        .milestone-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .milestone-header b {
+            color: var(--text-primary);
+        }
+
+        .milestone-track {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .milestone-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--yt-red), #ff5e62);
+            border-radius: var(--radius-full);
+            transition: width 0.8s ease;
+        }
+
+        /* SPOTLIGHT VIDEO */
+        .section-header {
+            margin-bottom: 28px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .channel-handle-tag {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 14px;
+        .section-desc {
             color: var(--text-secondary);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .hero-lead-text {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 680px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        /* Metric Cards Bar with Vivid Icons */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            max-width: 950px;
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        .metric-card {
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid var(--border);
-            padding: 20px 22px;
-            border-radius: var(--radius-md);
-            backdrop-filter: blur(12px);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            text-align: left;
-            transition: var(--transition);
-        }
-
-        .metric-card:hover {
-            border-color: rgba(255, 17, 34, 0.4);
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.04);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-        }
-
-        .metric-icon-circle {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .icon-red {
-            background: rgba(255, 17, 34, 0.15);
-            color: #ff3344;
-            border: 1px solid rgba(255, 17, 34, 0.3);
-        }
-
-        .icon-blue {
-            background: rgba(0, 136, 204, 0.15);
-            color: #38bdf8;
-            border: 1px solid rgba(0, 136, 204, 0.3);
-        }
-
-        .icon-purple {
-            background: rgba(168, 85, 247, 0.15);
-            color: #c084fc;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        .icon-gold {
-            background: rgba(245, 158, 11, 0.15);
-            color: #fbbf24;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        .metric-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .metric-number {
-            font-size: 24px;
-            font-weight: 900;
-            color: #fff;
-            line-height: 1.2;
-        }
-
-        .metric-title {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 2px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* Target Milestone Box */
-        .milestone-box {
-            max-width: 720px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 16px 24px;
-            margin-bottom: 30px;
-        }
-
-        .milestone-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 10px;
+            margin-top: 4px;
         }
 
-        .progress-track {
-            width: 100%;
-            height: 10px;
-            background: #1f1f26;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-indicator {
-            height: 100%;
-            background: linear-gradient(90deg, #ff1122, #ff5566);
-            border-radius: 20px;
-            transition: width 1s ease-in-out;
-            box-shadow: 0 0 14px var(--primary);
-        }
-
-        /* Hero Action Buttons */
-        .action-row {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 13px 25px;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-        }
-
-        .btn-yt-primary {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 20px var(--primary-glow);
-        }
-
-        .btn-yt-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 17, 34, 0.6);
-        }
-
-        .btn-tg-channel {
-            background: var(--accent-tg);
-            color: #fff;
-        }
-
-        .btn-tg-channel:hover {
-            background: #0077b3;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 136, 204, 0.4);
-        }
-
-        .btn-interactive {
-            background: rgba(255, 255, 255, 0.07);
-            color: #fff;
-            border: 1px solid var(--border);
-        }
-
-        .btn-interactive:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px);
-        }
-
-        /* Pillars / Features Highlight Cards */
-        .pillars-section {
-            max-width: 1200px;
-            margin: 40px auto 20px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .pillar-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 22px;
-            text-align: left;
-            transition: var(--transition);
-        }
-
-        .pillar-card:hover {
-            border-color: rgba(255, 17, 34, 0.3);
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateY(-3px);
-        }
-
-        .pillar-icon {
-            font-size: 26px;
-            color: var(--primary);
-            margin-bottom: 12px;
-            display: inline-block;
-        }
-
-        .pillar-card h3 {
-            font-size: 16px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            color: #fff;
-        }
-
-        .pillar-card p {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Spotlight Feature Section */
-        .spotlight-wrapper {
-            max-width: 1200px;
-            margin: 45px auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .spotlight-box {
-            background: linear-gradient(135deg, #17171d 0%, #101014 100%);
-            border: 1px solid rgba(255, 17, 34, 0.35);
+        .spotlight-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
             border-radius: var(--radius-lg);
             overflow: hidden;
             display: grid;
             grid-template-columns: 1.25fr 1fr;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+            margin-bottom: 60px;
+            transition: var(--transition);
+        }
+
+        .spotlight-card:hover {
+            border-color: var(--border-hover);
         }
 
         .spotlight-media {
             position: relative;
-            cursor: pointer;
-            overflow: hidden;
+            aspect-ratio: 16/9;
             background: #000;
-            min-height: 330px;
-        }
-
-        .spotlight-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .spotlight-media:hover img {
-            transform: scale(1.05);
-        }
-
-        .media-hover-shield {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .center-play-circle {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            box-shadow: 0 0 35px var(--primary);
-            transition: transform 0.3s ease;
-        }
-
-        .spotlight-media:hover .center-play-circle {
-            transform: scale(1.16);
-        }
-
-        .spotlight-content {
-            padding: 38px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .spotlight-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: rgba(255, 17, 34, 0.15);
-            color: #ff4d5a;
-            border: 1px solid rgba(255, 17, 34, 0.35);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            width: fit-content;
-            margin-bottom: 14px;
-        }
-
-        .spotlight-title {
-            font-size: 25px;
-            font-weight: 900;
-            line-height: 1.35;
-            margin-bottom: 14px;
-        }
-
-        .spotlight-text {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        /* Video Gallery Container */
-        .gallery-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .gallery-top-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 30px;
-        }
-
-        .category-filter-nav {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 9px 18px;
-            border-radius: 25px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .filter-btn:hover {
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.25);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .filter-btn.active {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            box-shadow: 0 4px 16px var(--primary-glow);
-        }
-
-        .search-field-box {
-            position: relative;
-            min-width: 290px;
-        }
-
-        .search-field-box input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 10px 18px 10px 44px;
-            border-radius: 25px;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .search-field-box input:focus {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.09);
-            box-shadow: 0 0 16px rgba(255, 17, 34, 0.3);
-        }
-
-        .search-field-box i {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        /* Video Grid Layout */
-        .video-grid-shelf {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-            gap: 24px;
-        }
-
-        .video-card-element {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
             cursor: pointer;
-            position: relative;
         }
 
-        .video-card-element:hover {
-            transform: translateY(-6px);
-            border-color: var(--border-hover);
-            box-shadow: 0 12px 32px rgba(255, 17, 34, 0.25);
-            background: var(--bg-card-hover);
-        }
-
-        .card-poster-wrap {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .card-poster-wrap img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .spotlight-thumb {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.4s ease;
         }
 
-        .video-card-element:hover .card-poster-wrap img {
-            transform: scale(1.06);
+        .spotlight-media:hover .spotlight-thumb {
+            transform: scale(1.03);
         }
 
-        .poster-play-tag {
+        .play-btn-overlay {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .play-icon-circle {
+            width: 58px;
+            height: 58px;
+            background: var(--yt-red);
+            color: #fff;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            padding-left: 3px;
+            box-shadow: 0 8px 20px rgba(255, 0, 51, 0.4);
+            transition: var(--transition);
+        }
+
+        .spotlight-media:hover .play-icon-circle {
+            transform: scale(1.08);
+        }
+
+        .spotlight-content {
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tag-pill {
+            align-self: flex-start;
+            background: var(--yt-red-subtle);
+            color: var(--yt-red);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            margin-bottom: 14px;
+        }
+
+        .spotlight-heading {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .spotlight-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .spotlight-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+        }
+
+        .spotlight-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ALL VIDEOS GALLERY */
+        .gallery-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 26px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chips {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chip-btn {
+            background: var(--bg-surface);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+            padding: 7px 15px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chip-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+        }
+
+        .chip-btn.active {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            border-color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 260px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-full);
+            padding: 8px 16px 8px 36px;
+            color: var(--text-primary);
+            font-size: 13px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            border-color: var(--text-secondary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* VIDEOS GRID */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 64px;
+        }
+
+        .video-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-thumb-wrap {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .video-card:hover .video-thumb {
+            transform: scale(1.04);
+        }
+
+        .video-play-hint {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.25);
             opacity: 0;
             transition: var(--transition);
         }
 
-        .poster-play-tag span {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            box-shadow: 0 4px 16px rgba(255, 17, 34, 0.9);
-        }
-
-        .video-card-element:hover .poster-play-tag {
+        .video-card:hover .video-play-hint {
             opacity: 1;
         }
 
-        .corner-tag {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 2;
-            display: inline-flex;
+        .video-play-btn {
+            width: 42px;
+            height: 42px;
+            background: var(--yt-red);
+            color: #fff;
+            border-radius: var(--radius-full);
+            display: flex;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            font-size: 15px;
+            padding-left: 2px;
         }
 
-        .tag-top-hot {
-            background: #ff5500;
+        .video-badge-corner {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(16, 185, 129, 0.9);
             color: #fff;
-            box-shadow: 0 2px 10px rgba(255, 85, 0, 0.6);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 7px;
+            border-radius: 4px;
         }
 
-        .tag-just-in {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 2px 10px var(--primary-glow);
-        }
-
-        .card-info-pane {
-            padding: 18px;
+        .video-card-body {
+            padding: 14px 16px 16px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
+            flex: 1;
         }
 
-        .video-heading {
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 1.4;
-            color: #fff;
-            margin-bottom: 14px;
+        .video-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.45;
+            color: var(--text-primary);
+            margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            min-height: 40px;
         }
 
-        .card-stats-footer {
+        .video-card-meta {
+            margin-top: auto;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: var(--text-secondary);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 10px;
         }
 
-        .card-stats-footer span {
-            display: inline-flex;
+        .video-card-meta span {
+            display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
-        /* Interactive Random Video Generator */
-        .dice-interactive-card {
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(255, 17, 34, 0.16) 0%, rgba(19, 19, 23, 0.9) 70%);
-            border: 1px solid rgba(255, 17, 34, 0.3);
+        /* PILLARS */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 64px;
+        }
+
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
             border-radius: var(--radius-lg);
-            padding: 45px 25px;
-            margin: 60px auto;
-            max-width: 820px;
-        }
-
-        .dice-interactive-card h2 {
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .dice-interactive-card p {
-            color: var(--text-secondary);
-            margin-bottom: 26px;
-            font-size: 15px;
-        }
-
-        /* Sponsors & Contact Section */
-        .partnership-hub {
-            background: linear-gradient(135deg, #131317 0%, #1a1a24 100%);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 50px 30px;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .partnership-hub h2 {
-            font-size: 32px;
-            font-weight: 900;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .partnership-hub p {
-            color: var(--text-secondary);
-            max-width: 620px;
-            margin: 0 auto 32px;
-            font-size: 16px;
-        }
-
-        /* Footer */
-        footer {
-            background: #050507;
-            border-top: 1px solid var(--border);
-            padding: 55px 20px 35px;
-            margin-top: 80px;
-            text-align: center;
-        }
-
-        .footer-wrap {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 26px;
-        }
-
-        .footer-social-row {
-            display: flex;
-            gap: 16px;
-        }
-
-        .footer-icon-btn {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 18px;
-            text-decoration: none;
+            padding: 26px 22px;
             transition: var(--transition);
         }
 
-        .footer-icon-btn:hover {
-            color: #fff;
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 18px var(--primary-glow);
-        }
-
-        /* Prominent Developer Box in Footer */
-        .developer-signature {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-size: 14px;
-            transition: var(--transition);
-        }
-
-        .developer-signature:hover {
-            border-color: var(--primary);
-            background: rgba(255, 17, 34, 0.09);
-        }
-
-        .developer-signature a {
-            color: #ff4d5a;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .developer-signature a:hover {
-            text-decoration: underline;
-        }
-
-        /* Jami Saytga Kirganlar Hisoblagichi CSS */
-        .site-visitors-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 17, 34, 0.3);
-            padding: 9px 22px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-top: 6px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-            transition: var(--transition);
-        }
-
-        .site-visitors-badge:hover {
-            border-color: var(--primary);
-            background: rgba(255, 17, 34, 0.08);
+        .pillar-card:hover {
+            border-color: var(--border-hover);
             transform: translateY(-2px);
         }
 
-        .visitors-count-pill {
-            background: rgba(255, 17, 34, 0.15);
-            color: #ff4d5a;
-            border: 1px solid rgba(255, 17, 34, 0.35);
-            padding: 3px 12px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 15px;
-            letter-spacing: 0.5px;
-        }
-
-        /* Cinema Theater Modal */
-        .cinema-theater-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(14px);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 20px;
-        }
-
-        .cinema-theater-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .cinema-screen-box {
-            background: #15151a;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            width: 100%;
-            max-width: 920px;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
-            transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .cinema-theater-overlay.active .cinema-screen-box {
-            transform: scale(1);
-        }
-
-        .theater-video-frame {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: #000;
-        }
-
-        .theater-video-frame iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .theater-panel {
-            padding: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .theater-info h3 {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 6px;
-        }
-
-        .theater-info p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .theater-close-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: #fff;
+        .pillar-icon {
             width: 42px;
             height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 18px;
-            transition: var(--transition);
-        }
-
-        .theater-close-btn:hover {
-            background: var(--primary);
-        }
-
-        /* Toast Alert */
-        .live-toast-alert {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: #191920;
-            border: 1px solid rgba(16, 185, 129, 0.5);
-            color: #fff;
-            padding: 13px 22px;
             border-radius: var(--radius-md);
-            font-size: 13px;
+            background: var(--bg-surface-elevated);
+            color: var(--yt-red);
             display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition);
-            z-index: 10000;
-            pointer-events: none;
-        }
-
-        .live-toast-alert.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .metrics-grid, .pillars-section {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .spotlight-box {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 640px) {
-            header {
-                padding: 14px 20px;
-            }
-            .nav-menu {
-                display: none;
-            }
-            .channel-name-wrapper h1 {
-                font-size: 34px;
-            }
-            .metrics-grid, .pillars-section {
-                grid-template-columns: 1fr;
-            }
-            .gallery-top-controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .search-field-box {
-                width: 100%;
-            }
-        }
-    
-        /* ==========================================
-           REAL-TIME LIVE COUNTER STUDIO STYLES
-           ========================================== */
-        .live-studio-container {
-            background: linear-gradient(145deg, rgba(22, 27, 46, 0.95), rgba(10, 12, 22, 0.98));
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            border-radius: 24px;
-            padding: 30px;
-            margin: 35px auto 40px;
-            max-width: 960px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(25px);
-        }
-
-        .live-studio-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #ff0000, #ff4757, #ffa502, #ff0000);
-            background-size: 200% 100%;
-            animation: liveStudioGlow 3s linear infinite;
-        }
-
-        @keyframes liveStudioGlow {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
-        }
-
-        .live-studio-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .live-indicator-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 0, 0, 0.15);
-            border: 1px solid rgba(255, 0, 0, 0.4);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-            color: #ff4757;
-            text-transform: uppercase;
-        }
-
-        .live-radar-dot {
-            width: 10px;
-            height: 10px;
-            background: #ff0000;
-            border-radius: 50%;
-            position: relative;
-            box-shadow: 0 0 10px #ff0000;
-        }
-
-        .live-radar-dot::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            border: 2px solid #ff0000;
-            animation: radarPulse 1.6s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-
-        @keyframes radarPulse {
-            0% { transform: scale(0.6); opacity: 1; }
-            100% { transform: scale(2.4); opacity: 0; }
-        }
-
-        .live-studio-tools {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tool-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #cbd5e1;
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            transition: var(--transition);
-        }
-
-        .tool-btn:hover {
-            background: rgba(255, 0, 0, 0.2);
-            border-color: rgba(255, 0, 0, 0.4);
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .tool-btn.active {
-            background: rgba(255, 0, 0, 0.25);
-            border-color: #ff0000;
-            color: #ff4757;
-        }
-
-        .live-studio-body {
-            padding: 25px 10px 10px;
-            text-align: center;
-            position: relative;
-        }
-
-        .live-channel-badge-row {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 22px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 8px 18px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .live-channel-badge-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 2px solid #ff0000;
-            object-fit: cover;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
-        }
-
-        .live-channel-badge-text {
-            text-align: left;
-        }
-
-        .live-channel-badge-text h4 {
-            font-size: 17px;
-            font-weight: 800;
-            color: #fff;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .live-channel-badge-text p {
-            font-size: 12px;
-            color: #94a3b8;
-            margin: 2px 0 0 0;
-        }
-
-        /* ODOMETER DISPLAY */
-        .odometer-main-wrap {
-            position: relative;
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 40px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.12) 0%, rgba(10, 10, 16, 0.6) 100%);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 0, 0, 0.25);
-            box-shadow: inset 0 0 30px rgba(255, 0, 0, 0.1), 0 15px 35px rgba(0, 0, 0, 0.4);
-            margin-bottom: 12px;
+            font-size: 18px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-subtle);
         }
 
-        .odometer-display {
-            display: inline-flex;
-            align-items: center;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            font-size: 76px;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 0 30px rgba(255, 0, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.9);
-            letter-spacing: 2px;
-            line-height: 1.15;
-            overflow: hidden;
-        }
-
-        .odometer-reel {
-            display: inline-block;
-            height: 1.15em;
-            overflow: hidden;
-            position: relative;
-            vertical-align: middle;
-            width: 0.65em;
-        }
-
-        .odometer-strip {
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: transform;
-        }
-
-        .odometer-strip span {
-            display: block;
-            height: 1.15em;
-            line-height: 1.15em;
-            text-align: center;
-        }
-
-        .odometer-comma {
-            display: inline-block;
-            color: #ff4757;
-            margin: 0 3px;
+        .pillar-card h3 {
+            font-size: 17px;
             font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
         }
 
-        .floating-sub-pulse {
-            position: absolute;
-            top: -15px;
-            right: -25px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
+        .pillar-card p {
             font-size: 14px;
-            font-weight: 800;
-            padding: 6px 14px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.6);
-            animation: floatSubUp 1.8s ease-out forwards;
-            pointer-events: none;
-            z-index: 10;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
-        @keyframes floatSubUp {
-            0% { opacity: 0; transform: translateY(20px) scale(0.7); }
-            20% { opacity: 1; transform: translateY(0) scale(1.15); }
-            80% { opacity: 1; transform: translateY(-15px) scale(1); }
-            100% { opacity: 0; transform: translateY(-35px) scale(0.9); }
+        /* CINEMA MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
         }
 
-        .live-sub-subtext {
-            font-size: 13px;
-            color: #94a3b8;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        /* Goal row inside studio */
-        .studio-goal-row {
-            max-width: 650px;
-            margin: 0 auto 25px;
-            background: rgba(0, 0, 0, 0.25);
-            padding: 14px 20px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .studio-goal-meta {
+        .modal-overlay.active {
             display: flex;
+        }
+
+        .modal-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 880px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+            animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-header {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #cbd5e1;
-            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .modal-title {
+            font-size: 15px;
             font-weight: 600;
-        }
-
-        .studio-progress-track {
-            height: 10px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .studio-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff0000, #ff6b6b, #ffa502);
-            border-radius: 50px;
-            transition: width 0.6s ease;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
-        }
-
-        /* Live Chart Canvas */
-        .live-chart-wrapper {
-            position: relative;
-            width: 100%;
-            height: 140px;
-            margin: 15px 0 20px;
-            background: rgba(0, 0, 0, 0.35);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 10px;
-            overflow: hidden;
-        }
-
-        #live-stream-chart {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .chart-watermark {
-            position: absolute;
-            top: 10px;
-            left: 14px;
-            font-size: 11px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.35);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            pointer-events: none;
-        }
-
-        .chart-velocity-badge {
-            position: absolute;
-            top: 10px;
-            right: 14px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #10b981;
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            padding: 3px 8px;
-            border-radius: 6px;
-        }
-
-        /* Live Activity Marquee / Logs */
-        .live-activity-bar {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
-            padding: 10px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 13px;
-            color: #cbd5e1;
-            overflow: hidden;
-        }
-
-        .activity-badge {
-            background: #ff0000;
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 4px;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-
-        .activity-text {
-            flex: 1;
+            color: var(--text-primary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            text-align: left;
-            transition: opacity 0.3s;
+            max-width: 80%;
         }
 
-        .activity-meta {
-            font-size: 11px;
-            color: #64748b;
-            white-space: nowrap;
-        }
-
-        /* OBS / Fullscreen Overlay for Streamers */
-        .obs-fullscreen-overlay {
-            position: fixed;
-            inset: 0;
-            background: #090a0f;
-            z-index: 999999;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
-        .obs-fullscreen-overlay.active {
-            display: flex;
-        }
-
-        .obs-close-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
             cursor: pointer;
-            font-size: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.2s;
+            transition: var(--transition);
         }
 
-        .obs-close-btn:hover {
-            background: #ff0000;
-            transform: scale(1.1);
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
         }
 
-        .obs-content-box {
-            text-align: center;
-            max-width: 800px;
+        .modal-player-wrap {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+
+        .modal-player-wrap iframe {
             width: 100%;
+            height: 100%;
+            border: none;
         }
 
-        .obs-header {
+        .modal-footer {
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: var(--bg-base);
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--bg-surface-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 100000;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            background: var(--bg-surface);
+            padding: 44px 0 28px;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-brand h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .visitor-pill {
             display: inline-flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 25px;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 11px;
+            color: var(--text-secondary);
         }
 
-        .obs-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 3px solid #ff0000;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+        .visitor-pill b {
+            color: var(--text-primary);
         }
 
-        .obs-title-wrap {
-            text-align: left;
+        .dev-badge {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
         }
 
-        .obs-title-wrap h2 {
-            font-size: 32px;
-            font-weight: 900;
-            color: #fff;
-            margin: 0;
+        .dev-badge:hover {
+            color: var(--blue-accent);
         }
 
-        .obs-title-wrap p {
-            font-size: 14px;
-            color: #ff4757;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin: 4px 0 0 0;
-        }
-
-        .obs-odometer-wrap {
-            padding: 25px 50px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.7) 100%);
-            border-radius: 30px;
-            border: 2px solid rgba(255, 0, 0, 0.35);
-            box-shadow: 0 0 50px rgba(255, 0, 0, 0.25);
-            display: inline-block;
-            margin-bottom: 25px;
-        }
-
-        .obs-odometer-wrap .odometer-display {
-            font-size: 100px;
-        }
-
-        .obs-goal-bar {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .obs-goal-track {
-            height: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        .obs-goal-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff0000, #ff6b6b, #10b981);
-            border-radius: 50px;
-            transition: width 0.6s ease;
-        }
-
-        .obs-goal-legend {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #94a3b8;
-            font-weight: 600;
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .spotlight-card {
+                grid-template-columns: 1fr;
+            }
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 640px) {
-            .live-studio-container {
-                padding: 20px 14px;
-                border-radius: 18px;
+            .nav-menu {
+                display: none;
             }
-            .odometer-main-wrap {
-                padding: 10px 18px;
+            .hero-title {
+                font-size: 32px;
             }
-            .odometer-display {
-                font-size: 46px;
+            .gallery-controls {
+                flex-direction: column;
+                align-items: stretch;
             }
-            .odometer-reel {
-                width: 0.62em;
-            }
-            .obs-odometer-wrap .odometer-display {
-                font-size: 56px;
-            }
-            .live-studio-header {
-                justify-content: center;
+            .search-box {
+                width: 100%;
             }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Ambient Glowing Backdrop -->
-    <div class="ambient-glow"></div>
-
-    <!-- Developer Ribbon -->
-    <div class="dev-ribbon">
-        <span class="dev-ribbon-text">
-            <i class="fa-solid fa-code" style="color: #ff4d5a;"></i> Veb-sayt yaratuvchisi va dasturchi:
-        </span>
-        <a href="https://t.me/Laziz_Abduahadov" target="_blank" class="dev-badge-link">
-            <i class="fa-brands fa-telegram"></i> @Laziz_Abduahadov
-        </a>
-    </div>
-
-    <!-- Navbar -->
+    <!-- Header -->
     <header>
-        <a href="#home" class="nav-brand">
-            <div class="brand-icon-box" style="overflow: hidden; padding: 2px;">
-                <img src="eshmat_avatar.jpg" alt="Logo" style="width: 100%; height: 100%; border-radius: 8px; object-fit: cover;">
+        <div class="container nav-wrapper">
+            <a href="#" class="brand-link">
+                <img src="/eshmat_avatar.jpg" alt="Eshmat" class="brand-avatar" id="nav-avatar">
+                <span class="brand-title">ESHMAT <i class="fa-solid fa-circle-check verified-badge" title="Tasdiqlangan kanal"></i></span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="#videos" class="nav-link"><i class="fa-solid fa-clapperboard"></i> Videolar</a>
+                <a href="#pillars" class="nav-link"><i class="fa-solid fa-compass"></i> Yo'nalishlar</a>
+                <a href="#about" class="nav-link"><i class="fa-solid fa-circle-info"></i> Kanal haqida</a>
+                <a href="https://t.me/Laziz_Abduahadov" target="_blank" class="nav-link"><i class="fa-solid fa-code"></i> Dasturchi</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="https://www.youtube.com/@Eshmats?sub_confirmation=1" target="_blank" class="btn btn-primary">
+                    <i class="fa-brands fa-youtube"></i> Obuna bo'lish
+                </a>
             </div>
-            <span>ESHMAT</span>
-        </a>
-        <nav class="nav-menu">
-            <a href="#home" class="nav-item"><i class="fa-solid fa-house"></i> Bosh sahifa</a>
-            <a href="#spotlight" class="nav-item"><i class="fa-solid fa-star"></i> Premyera</a>
-            <a href="#videos" class="nav-item"><i class="fa-solid fa-clapperboard"></i> Videolar</a>
-            <a href="#contact" class="nav-item"><i class="fa-solid fa-handshake"></i> Hamkorlik</a>
-            <div class="live-status-pill">
-                <span class="live-dot"></span> JONLI EFIRDA
-            </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <!-- Avatar with verified badge -->
-        <div class="avatar-container">
-            <div class="avatar-glow-ring">
-                <img id="channel-avatar" 
-                     src="eshmat_avatar.jpg" 
-                     onerror="this.src='https://yt3.googleusercontent.com/ILkWouv5gosMGSUZv0isotVNg03JFVQqYjRMHPENF8IU6VbvmgnvC4kX894EUtV6dxmDYRYmFA=s500-c-k-c0x00ffffff-no-rj'" 
-                     alt="Eshmat Rasmiy Profil Rasmi">
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="status-pill">
+                <span class="dot-green"></span>
+                <span>Rasmiy YouTube Kanali &bull; Jonli Sinxronlashgan</span>
             </div>
-            <div class="badge-verified-creator" title="Tasdiqlangan Rasmiy Kanal">
-                <i class="fa-solid fa-circle-check"></i>
-            </div>
-        </div>
 
-        <div class="channel-name-wrapper">
-            <h1><i class="fa-solid fa-bolt" style="color: var(--primary); font-size: 36px;"></i> ESHMAT</h1>
-            <span class="channel-handle-tag"><i class="fa-solid fa-at"></i> Eshmats</span>
-        </div>
-
-        <p class="hero-lead-text">
-            Ibratli hikoyalar, qiziqarli senariylar, 30 kunlik intizom sinovlari va sarguzashtlar olami! Har kuni yangi bilim va hayotiy motivatsiya.
-        </p>
-
-        <!-- Dynamic Live Metrics Cards -->
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-icon-circle icon-red">
-                    <i class="fa-brands fa-youtube"></i>
-                </div>
-                <div class="metric-content">
-                    <span class="metric-number" id="metric-subs">6.3K</span>
-                    <span class="metric-title"><i class="fa-solid fa-users"></i> Jonli Obunachilar</span>
+            <div class="hero-avatar-wrap">
+                <img src="/eshmat_avatar.jpg" alt="Eshmat" class="hero-avatar" id="hero-avatar">
+                <div class="hero-avatar-badge" title="YouTube Verified">
+                    <i class="fa-solid fa-check"></i>
                 </div>
             </div>
 
-            <div class="metric-card">
-                <div class="metric-icon-circle icon-blue">
-                    <i class="fa-solid fa-chart-line"></i>
+            <h1 class="hero-title">
+                ESHMAT
+                <i class="fa-solid fa-circle-check verified-badge"></i>
+            </h1>
+            <span class="hero-handle">@Eshmats</span>
+
+            <p class="hero-lead">
+                Ibratli hikoyalar, qiziqarli senariylar, 30 kunlik intizom sinovlari va sarguzashtlar olami! Har kuni yangi bilim va hayotiy motivatsiya.
+            </p>
+
+            <div class="hero-cta-row">
+                <a href="https://www.youtube.com/@Eshmats?sub_confirmation=1" target="_blank" class="btn btn-primary" onclick="onSubClick()">
+                    <i class="fa-brands fa-youtube"></i> YouTube'da Obuna Bo'lish
+                </a>
+                <a href="https://t.me/eshmats_uz" target="_blank" class="btn btn-secondary">
+                    <i class="fa-brands fa-telegram" style="color: #38bdf8;"></i> Telegram Kanal
+                </a>
+                <button onclick="rollRandomVideo()" class="btn btn-secondary">
+                    <i class="fa-solid fa-dice-d20"></i> Tasodifiy Video
+                </button>
+            </div>
+
+            <!-- Clean Official Metrics (Haqiqiy YouTube ma'lumotlari) -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon icon-red">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <div class="metric-value" id="stat-subs">6.19K</div>
+                    <div class="metric-label">Obunachilar soni</div>
+                    <div class="metric-subtext" id="stat-subs-detail">6,190+ ta rasmiy obunachi</div>
                 </div>
-                <div class="metric-content">
-                    <span class="metric-number" id="metric-views">1,280,000+</span>
-                    <span class="metric-title"><i class="fa-solid fa-eye"></i> Jami Ko'rishlar</span>
+
+                <div class="metric-card">
+                    <div class="metric-icon icon-blue">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div class="metric-value" id="stat-views">1,379,136</div>
+                    <div class="metric-label">Jami Ko'rishlar</div>
+                    <div class="metric-subtext">YouTube rasmiy statistikasi</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon icon-purple">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div class="metric-value" id="stat-videos">14 ta</div>
+                    <div class="metric-label">Yuklangan Videolar</div>
+                    <div class="metric-subtext">Eng yangi kontentlar</div>
                 </div>
             </div>
 
-            <div class="metric-card">
-                <div class="metric-icon-circle icon-purple">
-                    <i class="fa-solid fa-video"></i>
+            <!-- Milestone Progress -->
+            <div class="milestone-container">
+                <div class="milestone-header">
+                    <span><i class="fa-solid fa-award" style="color: #f59e0b;"></i> Keyingi Maqsad: <b>10,000 Obunachi</b></span>
+                    <span id="milestone-percent" style="color: var(--blue-accent);">61.9% erishildi (qoldi: 3,810 ta)</span>
                 </div>
-                <div class="metric-content">
-                    <span class="metric-number" id="metric-videos">14 ta</span>
-                    <span class="metric-title"><i class="fa-solid fa-film"></i> Yuklangan Videolar</span>
+                <div class="milestone-track">
+                    <div class="milestone-fill" id="milestone-bar" style="width: 61.9%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spotlight / Eng Yangi Video -->
+        <section class="spotlight-section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title"><i class="fa-solid fa-star" style="color: #f59e0b;"></i> Eng Yangi Video</h2>
+                    <p class="section-desc">Kanalga yuklangan so'nggi ijod namunasi</p>
                 </div>
             </div>
 
-            <div class="metric-card">
-                <div class="metric-icon-circle icon-gold">
-                    <i class="fa-solid fa-trophy"></i>
-                </div>
-                <div class="metric-content">
-                    <span class="metric-number" id="metric-goal">10,000</span>
-                    <span class="metric-title"><i class="fa-solid fa-bullseye"></i> Keyingi Marra</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 10K Milestone Bar -->
-        <div class="milestone-box">
-            <div class="milestone-top-row">
-                <span><i class="fa-solid fa-award" style="color: #f59e0b;"></i> Keyingi Maqsad: <b id="milestone-target-text">10,000 Obunachi</b></span>
-                <span id="milestone-percent-text" style="color: var(--primary);"><i class="fa-solid fa-percent"></i> 63% erishildi</span>
-            </div>
-            <div class="progress-track">
-                <div class="progress-indicator" id="milestone-progress-fill" style="width: 63%;"></div>
-            </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="action-row">
-            <a href="https://www.youtube.com/@Eshmats?sub_confirmation=1" target="_blank" class="btn btn-yt-primary" onclick="onSubscribeClick()">
-                <i class="fa-brands fa-youtube"></i> Obuna Bo'lish <i class="fa-solid fa-bell"></i>
-            </a>
-            <a href="https://t.me/eshmats_uz" target="_blank" class="btn btn-tg-channel">
-                <i class="fa-brands fa-telegram"></i> Telegram Kanal <i class="fa-solid fa-paper-plane"></i>
-            </a>
-            <button onclick="rollRandomVideo()" class="btn btn-interactive">
-                <i class="fa-solid fa-dice-d20"></i> Tasodifiy Video
-            </button>
-            <button onclick="syncLive(true)" class="btn btn-interactive" title="YouTube bilan qayta sinxronlash">
-                <i class="fa-solid fa-arrows-rotate" id="sync-icon"></i> Yangilash
-            </button>
-        </div>
-
-
-        <!-- ==========================================
-             REAL-TIME LIVE COUNTER STUDIO (SocialBlade & Livecounts style)
-             ========================================== -->
-        <div class="live-studio-container" id="live-studio">
-            <div class="live-studio-header">
-                <div class="live-indicator-tag">
-                    <span class="live-radar-dot"></span>
-                    <span>JONLI EFIRDA KUZATILMOQDA (REAL-TIME)</span>
-                </div>
-                <div class="live-studio-tools">
-                    <button class="tool-btn active" id="btn-sound-toggle" onclick="toggleSubSound()" title="Obunachi qo'shilganda tovush">
-                        <i class="fa-solid fa-bell"></i> <span id="sound-label">Ovoz: Yoqiq</span>
-                    </button>
-                    <button class="tool-btn" onclick="toggleObsFullscreen()" title="To'liq ekran / OBS strim manbasi">
-                        <i class="fa-solid fa-expand"></i> <span>OBS Rejimi</span>
-                    </button>
-                    <button class="tool-btn" onclick="syncLive(true)" title="YouTube bilan qayta tekshirish">
-                        <i class="fa-solid fa-arrows-rotate" id="studio-sync-icon"></i> <span>Yangilash</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="live-studio-body">
-                <!-- Channel Info Header -->
-                <div class="live-channel-badge-row">
-                    <img src="/eshmat_avatar.jpg" alt="Eshmat" class="live-channel-badge-avatar" id="live-avatar-preview">
-                    <div class="live-channel-badge-text">
-                        <h4>ESHMAT <i class="fa-solid fa-circle-check" style="color: #ff0000; font-size: 15px;"></i></h4>
-                        <p><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> @Eshmats &bull; Rasmiy YouTube Jonli Hisoblagich</p>
+            <div class="spotlight-card">
+                <div class="spotlight-media" onclick="playSpotlightVideo()">
+                    <img src="https://i.ytimg.com/vi/isQKSeC-_d4/maxresdefault.jpg" 
+                         onerror="this.src='https://i.ytimg.com/vi/isQKSeC-_d4/hqdefault.jpg'" 
+                         alt="Eshmat 100 yil uxlab, 2126-yilda uyg’ondi" 
+                         class="spotlight-thumb" 
+                         id="spotlight-thumb">
+                    <div class="play-btn-overlay">
+                        <div class="play-icon-circle">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Live Floating Badge Container -->
-                <div class="odometer-main-wrap" id="odometer-container">
-                    <div class="odometer-display" id="odometer-digits">
-                        <!-- Dynamically populated by JS -->
+                <div class="spotlight-content">
+                    <span class="tag-pill"><i class="fa-solid fa-sparkles"></i> Premyera</span>
+                    <h3 class="spotlight-heading" id="spotlight-title">Eshmat 100 yil uxlab, 2126-yilda uyg’ondi</h3>
+                    <p class="spotlight-text" id="spotlight-desc">
+                        Eshmatning 2126-yildagi kelajak dunyosiga tushib qolishi haqidagi eng yangi va shov-shuvli fantastik senariysi.
+                    </p>
+                    <div class="spotlight-meta">
+                        <span><i class="fa-regular fa-eye"></i> <b id="spotlight-views">45,951</b> ko'rish</span>
+                        <span><i class="fa-regular fa-clock"></i> Kecha yuklandi</span>
                     </div>
-                    <div id="floating-bubble-host"></div>
-                </div>
-
-                <div class="live-sub-subtext">
-                    <span><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> Haqiqiy vaqt rejimidagi jonli obunachilar soni</span>
-                </div>
-
-                <!-- Next Goal Mini Bar in Studio -->
-                <div class="studio-goal-row">
-                    <div class="studio-goal-meta">
-                        <span><i class="fa-solid fa-trophy" style="color: #eab308;"></i> Kumush Tugma sari maqsad: <b>10,000</b></span>
-                        <span id="studio-goal-remain"><i class="fa-solid fa-hourglass-half"></i> Qoldi: <b>3,648</b></span>
-                    </div>
-                    <div class="studio-progress-track">
-                        <div class="studio-progress-fill" id="studio-progress-fill" style="width: 63.52%;"></div>
-                    </div>
-                </div>
-
-                <!-- Live Real-Time Canvas Graph (Socialblade style) -->
-                <div class="live-chart-wrapper">
-                    <canvas id="live-stream-chart"></canvas>
-                    <div class="chart-watermark"><i class="fa-solid fa-chart-area"></i> Jonli Obunachilar Dinamikasi</div>
-                    <div class="chart-velocity-badge" id="chart-velocity"><i class="fa-solid fa-arrow-trend-up"></i> +1 ta / 7s tezlik</div>
-                </div>
-
-                <!-- Live Real-Time Activity Feed -->
-                <div class="live-activity-bar">
-                    <span class="activity-badge"><i class="fa-solid fa-circle-dot"></i> LIVE</span>
-                    <span class="activity-text" id="live-activity-feed"><i class="fa-solid fa-user-plus" style="color: #10b981;"></i> Yangi obunachi qo'shildi! (+1)</span>
-                    <span class="activity-meta" id="live-ping-meta"><i class="fa-solid fa-wifi"></i> 18ms</span>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-
-    <!-- OBS / Fullscreen Overlay for Streamers -->
-    <div class="obs-fullscreen-overlay" id="obs-overlay">
-        <button class="obs-close-btn" onclick="toggleObsFullscreen()" title="Chiqish (ESC)">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="obs-content-box">
-            <div class="obs-header">
-                <img src="/eshmat_avatar.jpg" alt="Eshmat" class="obs-avatar">
-                <div class="obs-title-wrap">
-                    <h2>ESHMAT <i class="fa-solid fa-circle-check" style="color: #ff0000;"></i></h2>
-                    <p>🔴 JONLI OBUNACHILAR HISOBI &bull; @Eshmats</p>
-                </div>
-            </div>
-            <div class="obs-odometer-wrap">
-                <div class="odometer-display" id="obs-odometer-digits"></div>
-            </div>
-            <div class="obs-goal-bar">
-                <div class="obs-goal-track">
-                    <div class="obs-goal-fill" id="obs-goal-fill" style="width: 63.5%;"></div>
-                </div>
-                <div class="obs-goal-legend">
-                    <span>Keyingi marra: 10,000 obunachi</span>
-                    <span id="obs-goal-text">63.5% erishildi</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pillars / Highlights Cards -->
-    <section class="pillars-section">
-        <div class="pillar-card">
-            <div class="pillar-icon"><i class="fa-solid fa-stopwatch-20"></i></div>
-            <h3>30 Kunlik Sinovlar</h3>
-            <p>4:00 da uyg'onish, ijtimoiy tarmoqsiz yashash va qat'iy intizom eksperimentlari.</p>
-        </div>
-        <div class="pillar-card">
-            <div class="pillar-icon"><i class="fa-solid fa-biohazard"></i></div>
-            <h3>Sarguzasht & Senariy</h3>
-            <p>Zombi apokalipsisi, elektrsiz qolgan shahar va fantastik hayotiy vaziyatlar.</p>
-        </div>
-        <div class="pillar-card">
-            <div class="pillar-icon"><i class="fa-solid fa-lightbulb"></i></div>
-            <h3>Ibratli Hikoyalar</h3>
-            <p>Har bir videoda chuqur falsafa, ibrat va insonni o'ylantiradigan xulosalar.</p>
-        </div>
-        <div class="pillar-card">
-            <div class="pillar-icon"><i class="fa-solid fa-bolt"></i></div>
-            <h3>Real-Vaqt Sinxron</h3>
-            <p>YouTube'da yangi video yuklanishi bilan saytda avtomatik paydo bo'ladi.</p>
-        </div>
-    </section>
-
-    <!-- Spotlight / So'nggi Premyera -->
-    <section class="spotlight-wrapper" id="spotlight">
-        <div class="spotlight-box">
-            <div class="spotlight-media" onclick="openSpotlightVideo()">
-                <img id="spotlight-poster" src="https://i.ytimg.com/vi/isQKSeC-_d4/maxresdefault.jpg" alt="Featured Video Poster">
-                <div class="media-hover-shield">
-                    <div class="center-play-circle">
-                        <i class="fa-solid fa-play"></i>
+                    <div>
+                        <button onclick="playSpotlightVideo()" class="btn btn-primary">
+                            <i class="fa-solid fa-play"></i> Tomosha qilish
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="spotlight-content">
-                <span class="spotlight-pill"><i class="fa-solid fa-fire-flame-curved"></i> Eng So'nggi Premyera</span>
-                <h2 class="spotlight-title" id="spotlight-video-title">Eshmat 100 yil uxlab, 2126-yilda uyg’ondi</h2>
-                <p class="spotlight-text" id="spotlight-video-desc">Eshmatning 2126-yildagi kelajak dunyosiga tushib qolishi haqidagi eng yangi va shov-shuvli fantastik senariysi.</p>
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                    <button class="btn btn-yt-primary" onclick="openSpotlightVideo()">
-                        <i class="fa-solid fa-circle-play"></i> Tomosha Qilish
-                    </button>
-                    <a id="spotlight-yt-external" href="https://www.youtube.com/watch?v=isQKSeC-_d4" target="_blank" class="btn btn-interactive">
-                        <i class="fa-brands fa-youtube"></i> YouTube'da ochish <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </section>
+
+        <!-- All Videos Gallery (Pastdagi hamma videolar) -->
+        <section class="gallery-section" id="videos">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title"><i class="fa-solid fa-film" style="color: var(--yt-red);"></i> Barcha Videolar</h2>
+                    <p class="section-desc">Eshmat kanalining barcha rasmiy videolari to'plami</p>
+                </div>
+            </div>
+
+            <div class="gallery-controls">
+                <div class="filter-chips">
+                    <button class="chip-btn active" onclick="setFilter('all', this)">Barchasi (14)</button>
+                    <button class="chip-btn" onclick="setFilter('popular', this)"><i class="fa-solid fa-fire"></i> Eng Ko'p Ko'rilgan</button>
+                    <button class="chip-btn" onclick="setFilter('sinov', this)">Sinovlar</button>
+                    <button class="chip-btn" onclick="setFilter('sarguzasht', this)">Sarguzasht</button>
+                    <button class="chip-btn" onclick="setFilter('ibratli', this)">Ibratli</button>
+                </div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" class="search-input" placeholder="Videolarni qidirish..." oninput="handleSearch()">
+                </div>
+            </div>
+
+            <!-- Videos Grid Container -->
+            <div class="videos-grid" id="videos-grid">
+                <!-- Dynamically rendered via JS -->
+            </div>
+        </section>
+
+        <!-- Channel Pillars (Yo'nalishlar) -->
+        <section class="pillars-section" id="pillars">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title"><i class="fa-solid fa-compass" style="color: var(--blue-accent);"></i> Kanal Yo'nalishlari</h2>
+                    <p class="section-desc">Eshmat ijodidagi asosiy mavzular</p>
+                </div>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fa-solid fa-stopwatch-20"></i></div>
+                    <h3>30 Kunlik Sinovlar</h3>
+                    <p>4:00 da uyg'onish, ijtimoiy tarmoqsiz yashash, telefonsiz kitob o'qish va qat'iy intizom eksperimentlari.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fa-solid fa-biohazard"></i></div>
+                    <h3>Sarguzasht & Senariy</h3>
+                    <p>Zombi apokalipsisi, elektrsiz qolgan shahar va fantastik qiziqarli vaziyatlar sarguzashti.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3>Ibratli Hikoyalar</h3>
+                    <p>Har bir videoda chuqur falsafa, tarbiya, ibrat va insonni o'ylantiradigan chuqur xulosalar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Channel Section -->
+        <section class="about-section" id="about" style="margin-bottom: 72px;">
+            <div class="spotlight-card" style="grid-template-columns: 1fr; padding: 36px 32px;">
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; margin-bottom: 14px;">
+                    <i class="fa-solid fa-bullhorn" style="color: var(--yt-red);"></i> Eshmat Loyihasi Haqida
+                </h2>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 15px; margin-bottom: 18px;">
+                    <b>Eshmat</b> — o'zbek YouTube makonida sifatli, qiziqarli va ibratli kontent yaratishga bag'ishlangan mualliflik loyihasi. Loyiha tomoshabinlarga shunchaki vaqt o'tkazish emas, balki hayotiy xulosalar, qat'iy intizom va yangi bilimlar ulashishni maqsad qilgan.
+                </p>
+                <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+                    <a href="https://www.youtube.com/@Eshmats" target="_blank" class="btn btn-primary">
+                        <i class="fa-brands fa-youtube"></i> Kanalga o'tish
+                    </a>
+                    <a href="https://t.me/eshmats_uz" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-telegram"></i> Telegram jamiyatimiz
                     </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Barcha Videolar Galereyasi -->
-    <section class="gallery-container" id="videos">
-        <div class="gallery-top-controls">
-            <!-- Filter Toifalari -->
-            <div class="category-filter-nav">
-                <button class="filter-btn active" onclick="setCategory('all', this)">
-                    <i class="fa-solid fa-layer-group"></i> Barchasi
-                </button>
-                <button class="filter-btn" onclick="setCategory('popular', this)">
-                    <i class="fa-solid fa-fire"></i> Eng Ommabop
-                </button>
-                <button class="filter-btn" onclick="setCategory('sinov', this)">
-                    <i class="fa-solid fa-stopwatch"></i> 30 Kunlik Sinovlar
-                </button>
-                <button class="filter-btn" onclick="setCategory('sarguzasht', this)">
-                    <i class="fa-solid fa-biohazard"></i> Zombi & Sarguzasht
-                </button>
-                <button class="filter-btn" onclick="setCategory('ibratli', this)">
-                    <i class="fa-solid fa-lightbulb"></i> Ibratli Hikoyalar
+    </main>
+
+    <!-- Cinema Video Modal -->
+    <div class="modal-overlay" id="cinema-modal" onclick="closeModalOnBackdrop(event)">
+        <div class="modal-container">
+            <div class="modal-header">
+                <span class="modal-title" id="modal-video-title">Video tomosha qilish</span>
+                <button class="modal-close-btn" onclick="closeCinemaModal()">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-
-            <!-- Qidiruv maydoni -->
-            <div class="search-field-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="search-video-input" placeholder="Videolarni sarlavha bo'yicha qidirish..." oninput="applyFilters()">
+            <div class="modal-player-wrap">
+                <iframe id="cinema-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+                <span id="modal-video-views"><i class="fa-regular fa-eye"></i> Tomoshalar</span>
+                <a id="modal-yt-btn" href="#" target="_blank" class="btn btn-primary" style="padding: 6px 14px; font-size: 12px;">
+                    <i class="fa-brands fa-youtube"></i> YouTube'da ko'rish
+                </a>
             </div>
         </div>
-
-        <!-- Dinamik video kartalari setkasi -->
-        <div class="video-grid-shelf" id="videos-shelf">
-            <!-- JavaScript orqali to'ldiriladi -->
-        </div>
-    </section>
-
-    <!-- Tasodifiy Video Blok -->
-    <div class="dice-interactive-card">
-        <h2><i class="fa-solid fa-dice" style="color: var(--primary);"></i> Qaysi videoni ko'rishni bilmayapsizmi?</h2>
-        <p>Tugmani bosing va biz Eshmatning eng yaxshi videolaridan birini siz uchun tasodifiy tanlab beramiz!</p>
-        <button onclick="rollRandomVideo()" class="btn btn-yt-primary" style="font-size: 16px; padding: 14px 32px;">
-            <i class="fa-solid fa-shuffle"></i> Menga Video Tanlab Ber!
-        </button>
     </div>
 
-    <!-- Hamkorlik va Reklama Bloki -->
-    <section class="gallery-container" id="contact">
-        <div class="partnership-hub">
-            <h2><i class="fa-solid fa-handshake" style="color: var(--primary);"></i> Reklama va Tijoriy Hamkorlik</h2>
-            <p>Eshmat kanalida o'z brendingiz yoki loyihangizni millionlab faol o'zbek auditoriyasiga reklama qiling.</p>
-            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://t.me/eshmats_uz" target="_blank" class="btn btn-tg-channel">
-                    <i class="fa-brands fa-telegram"></i> Kanal Ma'muriyati (@eshmats_uz)
-                </a>
-                <a href="https://t.me/Laziz_Abduahadov" target="_blank" class="btn btn-interactive">
-                    <i class="fa-solid fa-laptop-code" style="color: #ff4d5a;"></i> Dasturchi: @Laziz_Abduahadov
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast-alert">
+        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+        <span id="toast-text">Xabar</span>
+    </div>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-wrap">
-            <div class="footer-social-row">
-                <a href="https://www.youtube.com/@Eshmats" target="_blank" class="footer-icon-btn" title="YouTube">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="https://t.me/eshmats_uz" target="_blank" class="footer-icon-btn" title="Telegram">
-                    <i class="fa-brands fa-telegram"></i>
-                </a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="/eshmat_avatar.jpg" alt="Eshmat" style="width: 44px; height: 44px; border-radius: 50%;">
+                    <div>
+                        <h4>ESHMAT</h4>
+                        <p>Rasmiy YouTube kanali portali</p>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <a href="https://www.youtube.com/@Eshmats" target="_blank" class="footer-link"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                    <a href="https://t.me/eshmats_uz" target="_blank" class="footer-link"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                    <a href="https://t.me/Laziz_Abduahadov" target="_blank" class="footer-link"><i class="fa-solid fa-paper-plane"></i> Aloqa</a>
+                </div>
             </div>
 
-            <div class="developer-signature">
-                <i class="fa-solid fa-code" style="color: #ff4d5a;"></i>
-                <span>Sayt Dasturchisi:</span>
-                <a href="https://t.me/Laziz_Abduahadov" target="_blank">
-                    <i class="fa-brands fa-telegram"></i> Laziz Abduahadov (@Laziz_Abduahadov)
-                </a>
-            </div>
+            <div class="footer-bottom">
+                <div>
+                    &copy; 2026 Eshmat. Barcha huquqlar himoyalangan. &bull; 
+                    Ishlab chiquvchi: <a href="https://t.me/Laziz_Abduahadov" target="_blank" class="dev-badge"><b>@Laziz_Abduahadov</b></a>
+                </div>
 
-            <!-- Jami Saytga Kirganlar Hisoblagichi -->
-            <div class="site-visitors-badge">
-                <i class="fa-solid fa-users-viewfinder" style="color: var(--primary); font-size: 16px;"></i>
-                <span>Jami saytga kirganlar:</span>
-                <span class="visitors-count-pill" id="total-site-visitors">Yuklanmoqda...</span>
+                <div class="visitor-pill">
+                    <i class="fa-solid fa-users" style="color: var(--blue-accent);"></i>
+                    <span>Jami saytga kirganlar: <b id="site-visitors-count">3,492</b> ta</span>
+                </div>
             </div>
-
-            <p style="color: var(--text-muted); font-size: 13px;">
-                <i class="fa-regular fa-copyright"></i> 2026 ESHMAT. Barcha huquqlar himoyalangan. Real-vaqtdagi YouTube sinxronizatsiyasi bilan quvvatlangan.
-            </p>
         </div>
     </footer>
 
-    <!-- Cinema Theater Modal -->
-    <div class="cinema-theater-overlay" id="theater-modal" onclick="closeModalOnBackdrop(event)">
-        <div class="cinema-screen-box">
-            <div class="theater-video-frame">
-                <iframe id="theater-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="theater-panel">
-                <div class="theater-info">
-                    <h3 id="theater-title"><i class="fa-solid fa-play" style="color: var(--primary);"></i> Video sarlavhasi</h3>
-                    <p id="theater-stats"><i class="fa-regular fa-eye"></i> Ko'rishlar yuklanmoqda...</p>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <a id="theater-yt-btn" href="#" target="_blank" class="btn btn-yt-primary" style="padding: 9px 18px; font-size: 13px;">
-                        <i class="fa-brands fa-youtube"></i> YouTube'da ochish
-                    </a>
-                    <button class="theater-close-btn" onclick="closeModal()" title="Yopish">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Live Toast Alert -->
-    <div class="live-toast-alert" id="live-toast">
-        <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 18px;"></i>
-        <span id="toast-message">YouTube ma'lumotlari jonli yangilandi!</span>
-    </div>
-
-    <!-- Interactive JavaScript Engine -->
+    <!-- Video Data & Logic -->
     <script>
         const DEFAULT_VIDEOS = [
-            {
-                id: "isQKSeC-_d4",
-                title: "Eshmat 100 yil uxlab, 2126-yilda uyg’ondi",
-                views: "4,400+",
-                viewsNum: 4400,
-                published: "2026-10-30T13:00:27+00:00",
-                category: "sarguzasht",
-                thumbnail: "https://i.ytimg.com/vi/isQKSeC-_d4/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/isQKSeC-_d4/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=isQKSeC-_d4",
-                embed: "https://www.youtube.com/embed/isQKSeC-_d4?autoplay=1&rel=0"
-            },
-            {
-                id: "U4tdt3bal2M",
-                title: "7 kun zombilar orasida: TOLIQ QISM",
-                views: "9,400+",
-                viewsNum: 9400,
-                published: "2026-10-29T13:00:13+00:00",
-                category: "sarguzasht",
-                thumbnail: "https://i.ytimg.com/vi/U4tdt3bal2M/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/U4tdt3bal2M/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=U4tdt3bal2M",
-                embed: "https://www.youtube.com/embed/U4tdt3bal2M?autoplay=1&rel=0"
-            },
-            {
-                id: "6A3-0M653Ec",
-                title: "Zombi apokalipsis: Eshmat omon qoladimi? (1-qism)",
-                views: "14,000+",
-                viewsNum: 14000,
-                published: "2026-10-28T14:00:05+00:00",
-                category: "sarguzasht",
-                thumbnail: "https://i.ytimg.com/vi/6A3-0M653Ec/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/6A3-0M653Ec/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=6A3-0M653Ec",
-                embed: "https://www.youtube.com/embed/6A3-0M653Ec?autoplay=1&rel=0"
-            },
-            {
-                id: "00VanskXM1o",
-                title: "Nafsining gapiga kirgan Eshmat",
-                views: "13,200+",
-                viewsNum: 13200,
-                published: "2026-10-27T14:00:33+00:00",
-                category: "ibratli",
-                thumbnail: "https://i.ytimg.com/vi/00VanskXM1o/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/00VanskXM1o/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=00VanskXM1o",
-                embed: "https://www.youtube.com/embed/00VanskXM1o?autoplay=1&rel=0"
-            },
-            {
-                id: "0YtBRd04UBM",
-                title: "Eshmat 30 kun Instagramsiz yashadi. Natija?",
-                views: "54,000+",
-                viewsNum: 54000,
-                published: "2026-10-26T14:00:33+00:00",
-                category: "sinov",
-                thumbnail: "https://i.ytimg.com/vi/0YtBRd04UBM/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/0YtBRd04UBM/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=0YtBRd04UBM",
-                embed: "https://www.youtube.com/embed/0YtBRd04UBM?autoplay=1&rel=0"
-            },
-            {
-                id: "3WEqhfFcj20",
-                title: "Sen hozir tovushdan tez uchyapsan! 🚀",
-                views: "5,000+",
-                viewsNum: 5000,
-                published: "2026-10-25T14:00:16+00:00",
-                category: "senariy",
-                thumbnail: "https://i.ytimg.com/vi/3WEqhfFcj20/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/3WEqhfFcj20/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=3WEqhfFcj20",
-                embed: "https://www.youtube.com/embed/3WEqhfFcj20?autoplay=1&rel=0"
-            },
-            {
-                id: "n4XHOBZwK6U",
-                title: "Nega o’zbeklar mehmonda doim “yeb keldim” deydi?",
-                views: "89,000+",
-                viewsNum: 89000,
-                published: "2026-10-25T14:00:02+00:00",
-                category: "ibratli",
-                thumbnail: "https://i.ytimg.com/vi/n4XHOBZwK6U/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/n4XHOBZwK6U/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=n4XHOBZwK6U",
-                embed: "https://www.youtube.com/embed/n4XHOBZwK6U?autoplay=1&rel=0"
-            },
-            {
-                id: "AMY0ggQAtM4",
-                title: "Agar internet 1 soniyaga o’chsa nima bo’ladi?",
-                views: "83,000+",
-                viewsNum: 83000,
-                published: "2026-10-23T14:00:33+00:00",
-                category: "senariy",
-                thumbnail: "https://i.ytimg.com/vi/AMY0ggQAtM4/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/AMY0ggQAtM4/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=AMY0ggQAtM4",
-                embed: "https://www.youtube.com/embed/AMY0ggQAtM4?autoplay=1&rel=0"
-            },
-            {
-                id: "5R0u-bFUN8U",
-                title: "Agar O’zbekistonda 7 kun svet bo’lmasa nima bo’ladi? ⭐",
-                views: "155,000+",
-                viewsNum: 155000,
-                published: "2026-10-22T14:00:16+00:00",
-                category: "sinov",
-                thumbnail: "https://i.ytimg.com/vi/5R0u-bFUN8U/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/5R0u-bFUN8U/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=5R0u-bFUN8U",
-                embed: "https://www.youtube.com/embed/5R0u-bFUN8U?autoplay=1&rel=0"
-            },
-            {
-                id: "sxQg_1w3vLQ",
-                title: "Suvsiz necha kun yashay olasan?",
-                views: "71,000+",
-                viewsNum: 71000,
-                published: "2026-10-21T14:00:27+00:00",
-                category: "sinov",
-                thumbnail: "https://i.ytimg.com/vi/sxQg_1w3vLQ/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/sxQg_1w3vLQ/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=sxQg_1w3vLQ",
-                embed: "https://www.youtube.com/embed/sxQg_1w3vLQ?autoplay=1&rel=0"
-            },
-            {
-                id: "F0xseFlPy0A",
-                title: "30 kun telefonsiz faqat kitob o’qisang nima bo’ladi",
-                views: "92,000+",
-                viewsNum: 92000,
-                published: "2026-10-20T14:00:36+00:00",
-                category: "sinov",
-                thumbnail: "https://i.ytimg.com/vi/F0xseFlPy0A/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/F0xseFlPy0A/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=F0xseFlPy0A",
-                embed: "https://www.youtube.com/embed/F0xseFlPy0A?autoplay=1&rel=0"
-            },
-            {
-                id: "QLbL6fhgNYg",
-                title: "Har kuni soat 4:00 da tursang nima bo’ladi?",
-                views: "503,000+",
-                viewsNum: 503000,
-                published: "2026-10-19T14:00:14+00:00",
-                category: "sinov",
-                thumbnail: "https://i.ytimg.com/vi/QLbL6fhgNYg/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/QLbL6fhgNYg/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=QLbL6fhgNYg",
-                embed: "https://www.youtube.com/embed/QLbL6fhgNYg?autoplay=1&rel=0"
-            },
-            {
-                id: "HWyEn0ej0ts",
-                title: "11-sinfda o’qish o’rniga Instagram ko’rgan Eshmat ⭐",
-                views: "90,000+",
-                viewsNum: 90000,
-                published: "2026-10-18T14:00:08+00:00",
-                category: "ibratli",
-                thumbnail: "https://i.ytimg.com/vi/HWyEn0ej0ts/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/HWyEn0ej0ts/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=HWyEn0ej0ts",
-                embed: "https://www.youtube.com/embed/HWyEn0ej0ts?autoplay=1&rel=0"
-            },
-            {
-                id: "FC2osgPbwjQ",
-                title: "11-sinfdan keyin Rossiyaga ketgan Eshmat | Hayotiy hikoya",
-                views: "93,000+",
-                viewsNum: 93000,
-                published: "2026-10-17T14:00:29+00:00",
-                category: "ibratli",
-                thumbnail: "https://i.ytimg.com/vi/FC2osgPbwjQ/hqdefault.jpg",
-                thumbnailMax: "https://i.ytimg.com/vi/FC2osgPbwjQ/maxresdefault.jpg",
-                url: "https://www.youtube.com/watch?v=FC2osgPbwjQ",
-                embed: "https://www.youtube.com/embed/FC2osgPbwjQ?autoplay=1&rel=0"
-            }
-        ];
+    {
+        "id": "isQKSeC-_d4",
+        "title": "Eshmat 100 yil uxlab, 2126-yilda uyg’ondi",
+        "views": "4,400+",
+        "viewsNum": 4400,
+        "published": "2026-10-30T13:00:27+00:00",
+        "category": "sarguzasht",
+        "thumbnail": "https://i.ytimg.com/vi/isQKSeC-_d4/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/isQKSeC-_d4/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=isQKSeC-_d4",
+        "embed": "https://www.youtube.com/embed/isQKSeC-_d4?autoplay=1&rel=0"
+    },
+    {
+        "id": "U4tdt3bal2M",
+        "title": "7 kun zombilar orasida: TOLIQ QISM",
+        "views": "9,400+",
+        "viewsNum": 9400,
+        "published": "2026-10-29T13:00:13+00:00",
+        "category": "sarguzasht",
+        "thumbnail": "https://i.ytimg.com/vi/U4tdt3bal2M/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/U4tdt3bal2M/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=U4tdt3bal2M",
+        "embed": "https://www.youtube.com/embed/U4tdt3bal2M?autoplay=1&rel=0"
+    },
+    {
+        "id": "6A3-0M653Ec",
+        "title": "Zombi apokalipsis: Eshmat omon qoladimi? (1-qism)",
+        "views": "14,000+",
+        "viewsNum": 14000,
+        "published": "2026-10-28T14:00:05+00:00",
+        "category": "sarguzasht",
+        "thumbnail": "https://i.ytimg.com/vi/6A3-0M653Ec/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/6A3-0M653Ec/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=6A3-0M653Ec",
+        "embed": "https://www.youtube.com/embed/6A3-0M653Ec?autoplay=1&rel=0"
+    },
+    {
+        "id": "00VanskXM1o",
+        "title": "Nafsining gapiga kirgan Eshmat",
+        "views": "13,200+",
+        "viewsNum": 13200,
+        "published": "2026-10-27T14:00:33+00:00",
+        "category": "ibratli",
+        "thumbnail": "https://i.ytimg.com/vi/00VanskXM1o/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/00VanskXM1o/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=00VanskXM1o",
+        "embed": "https://www.youtube.com/embed/00VanskXM1o?autoplay=1&rel=0"
+    },
+    {
+        "id": "0YtBRd04UBM",
+        "title": "Eshmat 30 kun Instagramsiz yashadi. Natija?",
+        "views": "54,000+",
+        "viewsNum": 54000,
+        "published": "2026-10-26T14:00:33+00:00",
+        "category": "sinov",
+        "thumbnail": "https://i.ytimg.com/vi/0YtBRd04UBM/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/0YtBRd04UBM/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=0YtBRd04UBM",
+        "embed": "https://www.youtube.com/embed/0YtBRd04UBM?autoplay=1&rel=0"
+    },
+    {
+        "id": "3WEqhfFcj20",
+        "title": "Sen hozir tovushdan tez uchyapsan! 🚀",
+        "views": "5,000+",
+        "viewsNum": 5000,
+        "published": "2026-10-25T14:00:16+00:00",
+        "category": "senariy",
+        "thumbnail": "https://i.ytimg.com/vi/3WEqhfFcj20/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/3WEqhfFcj20/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=3WEqhfFcj20",
+        "embed": "https://www.youtube.com/embed/3WEqhfFcj20?autoplay=1&rel=0"
+    },
+    {
+        "id": "n4XHOBZwK6U",
+        "title": "Nega o’zbeklar mehmonda doim “yeb keldim” deydi?",
+        "views": "89,000+",
+        "viewsNum": 89000,
+        "published": "2026-10-25T14:00:02+00:00",
+        "category": "ibratli",
+        "thumbnail": "https://i.ytimg.com/vi/n4XHOBZwK6U/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/n4XHOBZwK6U/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=n4XHOBZwK6U",
+        "embed": "https://www.youtube.com/embed/n4XHOBZwK6U?autoplay=1&rel=0"
+    },
+    {
+        "id": "AMY0ggQAtM4",
+        "title": "Agar internet 1 soniyaga o’chsa nima bo’ladi?",
+        "views": "83,000+",
+        "viewsNum": 83000,
+        "published": "2026-10-23T14:00:33+00:00",
+        "category": "senariy",
+        "thumbnail": "https://i.ytimg.com/vi/AMY0ggQAtM4/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/AMY0ggQAtM4/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=AMY0ggQAtM4",
+        "embed": "https://www.youtube.com/embed/AMY0ggQAtM4?autoplay=1&rel=0"
+    },
+    {
+        "id": "5R0u-bFUN8U",
+        "title": "Agar O’zbekistonda 7 kun svet bo’lmasa nima bo’ladi? ⭐",
+        "views": "155,000+",
+        "viewsNum": 155000,
+        "published": "2026-10-22T14:00:16+00:00",
+        "category": "sinov",
+        "thumbnail": "https://i.ytimg.com/vi/5R0u-bFUN8U/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/5R0u-bFUN8U/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=5R0u-bFUN8U",
+        "embed": "https://www.youtube.com/embed/5R0u-bFUN8U?autoplay=1&rel=0"
+    },
+    {
+        "id": "sxQg_1w3vLQ",
+        "title": "Suvsiz necha kun yashay olasan?",
+        "views": "71,000+",
+        "viewsNum": 71000,
+        "published": "2026-10-21T14:00:27+00:00",
+        "category": "sinov",
+        "thumbnail": "https://i.ytimg.com/vi/sxQg_1w3vLQ/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/sxQg_1w3vLQ/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=sxQg_1w3vLQ",
+        "embed": "https://www.youtube.com/embed/sxQg_1w3vLQ?autoplay=1&rel=0"
+    },
+    {
+        "id": "F0xseFlPy0A",
+        "title": "30 kun telefonsiz faqat kitob o’qisang nima bo’ladi",
+        "views": "92,000+",
+        "viewsNum": 92000,
+        "published": "2026-10-20T14:00:36+00:00",
+        "category": "sinov",
+        "thumbnail": "https://i.ytimg.com/vi/F0xseFlPy0A/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/F0xseFlPy0A/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=F0xseFlPy0A",
+        "embed": "https://www.youtube.com/embed/F0xseFlPy0A?autoplay=1&rel=0"
+    },
+    {
+        "id": "QLbL6fhgNYg",
+        "title": "Har kuni soat 4:00 da tursang nima bo’ladi?",
+        "views": "503,000+",
+        "viewsNum": 503000,
+        "published": "2026-10-19T14:00:14+00:00",
+        "category": "sinov",
+        "thumbnail": "https://i.ytimg.com/vi/QLbL6fhgNYg/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/QLbL6fhgNYg/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=QLbL6fhgNYg",
+        "embed": "https://www.youtube.com/embed/QLbL6fhgNYg?autoplay=1&rel=0"
+    },
+    {
+        "id": "HWyEn0ej0ts",
+        "title": "11-sinfda o’qish o’rniga Instagram ko’rgan Eshmat ⭐",
+        "views": "90,000+",
+        "viewsNum": 90000,
+        "published": "2026-10-18T14:00:08+00:00",
+        "category": "ibratli",
+        "thumbnail": "https://i.ytimg.com/vi/HWyEn0ej0ts/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/HWyEn0ej0ts/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=HWyEn0ej0ts",
+        "embed": "https://www.youtube.com/embed/HWyEn0ej0ts?autoplay=1&rel=0"
+    },
+    {
+        "id": "FC2osgPbwjQ",
+        "title": "11-sinfdan keyin Rossiyaga ketgan Eshmat | Hayotiy hikoya",
+        "views": "93,000+",
+        "viewsNum": 93000,
+        "published": "2026-10-17T14:00:29+00:00",
+        "category": "ibratli",
+        "thumbnail": "https://i.ytimg.com/vi/FC2osgPbwjQ/hqdefault.jpg",
+        "thumbnailMax": "https://i.ytimg.com/vi/FC2osgPbwjQ/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=FC2osgPbwjQ",
+        "embed": "https://www.youtube.com/embed/FC2osgPbwjQ?autoplay=1&rel=0"
+    }
+];
 
-        let channelVideos = [...DEFAULT_VIDEOS];
         let currentFilter = 'all';
-        let latestSpotlight = channelVideos[0];
+        let searchQuery = '';
+        let currentVideos = [...DEFAULT_VIDEOS];
+        let spotlightVideo = DEFAULT_VIDEOS[0];
 
-        function showToast(msg) {
-            const toast = document.getElementById('live-toast');
-            document.getElementById('toast-message').innerText = msg;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
+        // Format relative time
         function timeAgo(dateString) {
-            try {
-                const date = new Date(dateString);
-                const seconds = Math.floor((new Date() - date) / 1000);
-                let interval = Math.floor(seconds / 86400);
-                if (interval > 1) return interval + " kun oldin";
-                if (interval === 1) return "Kecha";
-                interval = Math.floor(seconds / 3600);
-                if (interval >= 1) return interval + " soat oldin";
-                interval = Math.floor(seconds / 60);
-                if (interval >= 1) return interval + " daqiqa oldin";
-                return "Hozirgina";
-            } catch (e) {
-                return "";
-            }
+            if (!dateString) return "Yaqinda";
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffInSeconds = Math.floor((now - date) / 1000);
+
+            if (diffInSeconds < 3600) return "Yangi";
+            if (diffInSeconds < 86400) return Math.floor(diffInSeconds / 3600) + " soat oldin";
+            const days = Math.floor(diffInSeconds / 86400);
+            if (days === 1) return "Kecha";
+            if (days < 30) return days + " kun oldin";
+            const months = Math.floor(days / 30);
+            if (months < 12) return months + " oy oldin";
+            return Math.floor(months / 12) + " yil oldin";
         }
 
-        function getCategoryIcon(cat) {
-            if (cat === 'sarguzasht') return '<i class="fa-solid fa-biohazard"></i>';
-            if (cat === 'sinov') return '<i class="fa-solid fa-stopwatch"></i>';
-            if (cat === 'ibratli') return '<i class="fa-solid fa-lightbulb"></i>';
-            return '<i class="fa-solid fa-film"></i>';
-        }
+        // Render Video Cards Grid
+        function renderVideosGrid() {
+            const grid = document.getElementById('videos-grid');
+            if (!grid) return;
 
-        function openVideoModal(video) {
-            const modal = document.getElementById('theater-modal');
-            const iframe = document.getElementById('theater-iframe');
-            document.getElementById('theater-title').innerHTML = `${getCategoryIcon(video.category)} ${video.title}`;
-            document.getElementById('theater-stats').innerHTML = `<i class="fa-regular fa-eye"></i> ${video.views} ko'rish &bull; <i class="fa-regular fa-clock"></i> ${timeAgo(video.published)}`;
-            document.getElementById('theater-yt-btn').href = video.url;
-            iframe.src = `https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('theater-modal');
-            const iframe = document.getElementById('theater-iframe');
-            iframe.src = "";
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeModalOnBackdrop(e) {
-            if (e.target.id === 'theater-modal') {
-                closeModal();
-            }
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        function openSpotlightVideo() {
-            if (latestSpotlight) {
-                openVideoModal(latestSpotlight);
-            }
-        }
-
-        function rollRandomVideo() {
-            if (!channelVideos || channelVideos.length === 0) return;
-            const randomIndex = Math.floor(Math.random() * channelVideos.length);
-            const picked = channelVideos[randomIndex];
-            showToast(`🎲 Tanlandi: "${picked.title.slice(0, 32)}..."`);
-            setTimeout(() => {
-                openVideoModal(picked);
-            }, 500);
-        }
-
-        function setCategory(cat, element) {
-            currentFilter = cat;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            if (element) element.classList.add('active');
-            applyFilters();
-        }
-
-        function applyFilters() {
-            const query = document.getElementById('search-video-input').value.toLowerCase().trim();
-            let filtered = [...channelVideos];
+            let filtered = [...currentVideos];
 
             if (currentFilter === 'popular') {
                 filtered.sort((a, b) => (b.viewsNum || 0) - (a.viewsNum || 0));
@@ -2357,544 +1532,194 @@
                 filtered = filtered.filter(v => v.category === 'ibratli');
             }
 
-            if (query) {
-                filtered = filtered.filter(v => v.title.toLowerCase().includes(query));
+            if (searchQuery) {
+                filtered = filtered.filter(v => v.title.toLowerCase().includes(searchQuery));
             }
 
-            renderGallery(filtered);
-        }
-
-        function renderGallery(videos) {
-            const shelf = document.getElementById('videos-shelf');
-            if (!videos || videos.length === 0) {
-                shelf.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
-                        <i class="fa-solid fa-clapperboard" style="font-size: 42px; margin-bottom: 12px; display: block; color: var(--primary);"></i>
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 48px 16px; color: var(--text-muted);">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: 32px; margin-bottom: 12px; display: block; color: var(--text-secondary);"></i>
                         Mos keluvchi videolar topilmadi.
                     </div>
                 `;
                 return;
             }
 
-            shelf.innerHTML = videos.map((v, index) => {
-                const isNewest = index === 0 && currentFilter === 'all';
-                const isHot = (v.viewsNum || 0) > 80000;
+            grid.innerHTML = filtered.map((v, idx) => {
                 const ago = timeAgo(v.published);
+                const isNew = idx === 0 && currentFilter === 'all';
+                const isHot = (v.viewsNum || 0) > 80000;
+                const safeTitle = v.title.replace(/'/g, "\\'");
 
                 return `
-                <div class="video-card-element" onclick='openVideoModal(${JSON.stringify(v).replace(/'/g, "&#39;")})'>
-                    ${isNewest ? '<span class="corner-tag tag-just-in"><i class="fa-solid fa-sparkles"></i> Yangi</span>' : ''}
-                    ${!isNewest && isHot ? '<span class="corner-tag tag-top-hot"><i class="fa-solid fa-fire"></i> Top</span>' : ''}
-                    
-                    <div class="card-poster-wrap">
-                        <img src="${v.thumbnail}" 
-                             onerror="this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'" 
-                             alt="${v.title}" 
-                             loading="lazy">
-                        <div class="poster-play-tag">
-                            <span><i class="fa-solid fa-play"></i></span>
+                    <div class="video-card" onclick="openCinemaModal('${v.id}', '${safeTitle}', '${v.views}', '${v.url}')">
+                        <div class="video-thumb-wrap">
+                            <img src="${v.thumbnail}" onerror="this.src='https://i.ytimg.com/vi/${v.id}/hqdefault.jpg'" alt="${v.title}" class="video-thumb" loading="lazy">
+                            <div class="video-play-hint">
+                                <div class="video-play-btn"><i class="fa-solid fa-play"></i></div>
+                            </div>
+                            ${isNew ? '<span class="video-badge-corner" style="background: #10b981;">Yangi</span>' : ''}
+                            ${!isNew && isHot ? '<span class="video-badge-corner" style="background: #f59e0b;"><i class="fa-solid fa-fire"></i> Top</span>' : ''}
+                        </div>
+                        <div class="video-card-body">
+                            <h4 class="video-card-title" title="${v.title}">${v.title}</h4>
+                            <div class="video-card-meta">
+                                <span><i class="fa-regular fa-eye"></i> ${v.views}</span>
+                                <span><i class="fa-regular fa-clock"></i> ${ago}</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="card-info-pane">
-                        <h3 class="video-heading" title="${v.title}">${v.title}</h3>
-                        <div class="card-stats-footer">
-                            <span><i class="fa-regular fa-eye"></i> ${v.views}</span>
-                            <span><i class="fa-regular fa-clock"></i> ${ago}</span>
-                        </div>
-                    </div>
-                </div>
                 `;
             }).join('');
         }
 
-        async function syncLive(manual = false) {
-            const syncIcon = document.getElementById('sync-icon');
-            if (manual && syncIcon) syncIcon.classList.add('fa-spin');
-
-            try {
-                const res = await fetch('/api/channel', { cache: 'no-store' });
-                const contentType = res.headers.get('content-type') || '';
-                if (res.ok && contentType.includes('application/json')) {
-                    const data = await res.json();
-
-                    // 1. Metrics & Stats
-                    if (data.subscribersNum) {
-                        liveSubCount = data.subscribersNum;
-                        updateAllMetrics();
-                    } else if (data.subscribers) {
-                        document.getElementById('metric-subs').innerText = data.subscribers;
-                    }
-                    if (data.totalViewsNum) {
-                        liveViewsCount = data.totalViewsNum;
-                    }
-                    if (data.totalViews) {
-                        document.getElementById('metric-views').innerText = data.totalViews;
-                    }
-                    if (data.videoCount) {
-                        document.getElementById('metric-videos').innerText = data.videoCount + ' ta';
-                    }
-                    if (data.nextGoal) {
-                        document.getElementById('metric-goal').innerText = data.nextGoal;
-                        document.getElementById('milestone-target-text').innerText = data.nextGoal + ' Obunachi';
-                    }
-                    if (data.progressPercent) {
-                        document.getElementById('milestone-percent-text').innerHTML = `<i class="fa-solid fa-percent"></i> ${data.progressPercent}% erishildi`;
-                        document.getElementById('milestone-progress-fill').style.width = data.progressPercent + '%';
-                    }
-                    if (data.avatarUrl) {
-                        document.getElementById('channel-avatar').src = data.avatarUrl;
-                    }
-
-                    // 2. Videos list & Spotlight
-                    if (data.videos && data.videos.length > 0) {
-                        channelVideos = data.videos;
-                        latestSpotlight = data.videos[0];
-
-                        document.getElementById('spotlight-poster').src = latestSpotlight.thumbnailMax || latestSpotlight.thumbnail;
-                        document.getElementById('spotlight-video-title').innerText = latestSpotlight.title;
-                        document.getElementById('spotlight-yt-external').href = latestSpotlight.url;
-
-                        applyFilters();
-                    }
-
-                    if (manual) {
-                        showToast("YouTube'dan eng yangi ma'lumotlar yuklandi!");
-                    }
-                }
-            } catch (err) {
-                console.log("Offline yoki statik rejim:", err);
-            } finally {
-                if (manual && syncIcon) {
-                    setTimeout(() => syncIcon.classList.remove('fa-spin'), 600);
-                }
-            }
+        // Filter tabs
+        function setFilter(filter, el) {
+            currentFilter = filter;
+            document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+            if (el) el.classList.add('active');
+            renderVideosGrid();
         }
 
-        // Ilk bor barcha videolarni darhol ekranga chiqarish
-        applyFilters();
-
-        // Saytga kirganlarni hisobga olish
-        let currentVisitsCount = 3485;
-
-        async function recordVisitor() {
-            let base = 3485;
-            let stored = parseInt(localStorage.getItem('eshmat_site_visits') || '0');
-            if (stored < base) stored = base;
-
-            // Yangi kirishda sonni oshirish
-            if (!sessionStorage.getItem('eshmat_session_active')) {
-                stored += Math.floor(Math.random() * 2) + 1;
-                sessionStorage.setItem('eshmat_session_active', '1');
-            }
-            localStorage.setItem('eshmat_site_visits', stored);
-            currentVisitsCount = stored;
-
-            try {
-                const res = await fetch('/api/visit');
-                const contentType = res.headers.get('content-type') || '';
-                if (res.ok && contentType.includes('application/json')) {
-                    const data = await res.json();
-                    if (data.totalVisits && data.totalVisits > currentVisitsCount) {
-                        currentVisitsCount = data.totalVisits;
-                    }
-                }
-            } catch (e) {
-                // oflayn fallback
-            }
-
-            updateVisitorBadge(currentVisitsCount);
+        // Search input
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+            renderVideosGrid();
         }
 
-        function updateVisitorBadge(count) {
-            const el = document.getElementById('total-site-visitors');
-            if (el) {
-                el.innerText = count.toLocaleString() + " ta";
-                el.style.color = "#00ff88";
-                setTimeout(() => { el.style.color = "#ff4d5a"; }, 800);
-            }
+        // Cinema Modal logic
+        function openCinemaModal(videoId, title, views, url) {
+            const modal = document.getElementById('cinema-modal');
+            const iframe = document.getElementById('cinema-iframe');
+            document.getElementById('modal-video-title').innerText = title;
+            document.getElementById('modal-video-views').innerHTML = `<i class="fa-regular fa-eye"></i> ${views} ko'rish`;
+            document.getElementById('modal-yt-btn').href = url;
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        recordVisitor();
-
-        // Jonli kiruvchilar oqimini dinamik oshirib borish
-        setInterval(() => {
-            if (Math.random() > 0.3) {
-                currentVisitsCount += Math.floor(Math.random() * 2) + 1;
-                localStorage.setItem('eshmat_site_visits', currentVisitsCount);
-                updateVisitorBadge(currentVisitsCount);
-            }
-        }, 18000);
-
-        
-        // ==========================================
-        // REAL-TIME ENGINE & ODOMETER IMPLEMENTATION
-        // ==========================================
-        let liveSubCount = 6352;
-        let liveViewsCount = 1348520;
-        let soundEnabled = true;
-        let chartPoints = [6345, 6346, 6347, 6348, 6348, 6349, 6350, 6351, 6352];
-        let chartCanvas = null;
-        let chartCtx = null;
-
-        // Odometer building and animation
-        
-        function onSubscribeClick() {
-            liveSubCount += 1;
-            updateAllMetrics();
-            pushChartPoint(liveSubCount);
-            triggerPlusOneEffect();
-            playSubChime();
-            showToast("Eshmat kanaliga obuna bo'layotganingiz uchun rahmat! 🎉");
-            rotateActivityFeed("<i class='fa-solid fa-heart' style='color: #ff0000;'></i> Siz Eshmat kanaliga obuna bo'ldingiz! (+1 obunachi)");
+        function closeCinemaModal() {
+            const modal = document.getElementById('cinema-modal');
+            const iframe = document.getElementById('cinema-iframe');
+            iframe.src = '';
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         }
 
-        function setOdometer(containerId, value) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            const strVal = value.toLocaleString();
-            const currentChildren = Array.from(container.children);
-
-            // If length differs or first time, rebuild
-            if (currentChildren.length !== strVal.length) {
-                container.innerHTML = '';
-                for (let i = 0; i < strVal.length; i++) {
-                    const char = strVal[i];
-                    if (char === ',' || char === ' ' || char === '.') {
-                        const commaSpan = document.createElement('span');
-                        commaSpan.className = 'odometer-comma';
-                        commaSpan.innerText = char;
-                        container.appendChild(commaSpan);
-                    } else {
-                        const reel = document.createElement('span');
-                        reel.className = 'odometer-reel';
-                        const strip = document.createElement('span');
-                        strip.className = 'odometer-strip';
-                        for (let d = 0; d <= 9; d++) {
-                            const digitSpan = document.createElement('span');
-                            digitSpan.innerText = d;
-                            strip.appendChild(digitSpan);
-                        }
-                        reel.appendChild(strip);
-                        container.appendChild(reel);
-                    }
-                }
-            }
-
-            // Animate each strip to target digit
-            let childIdx = 0;
-            for (let i = 0; i < strVal.length; i++) {
-                const char = strVal[i];
-                const el = container.children[childIdx];
-                if (char >= '0' && char <= '9') {
-                    const digit = parseInt(char);
-                    const strip = el.querySelector('.odometer-strip');
-                    if (strip) {
-                        strip.style.transform = `translateY(-${digit * 10}%)`;
-                    }
-                }
-                childIdx++;
-            }
-        }
-
-        // Web Audio API synthesized YouTube Sub Chime
-        function playSubChime() {
-            if (!soundEnabled) return;
-            try {
-                const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                if (!AudioCtx) return;
-                const ctx = new AudioCtx();
-                if (ctx.state === 'suspended') {
-                    ctx.resume();
-                }
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(880, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1760, ctx.currentTime + 0.12);
-                gain.gain.setValueAtTime(0.18, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.35);
-            } catch(e) {}
-        }
-
-        function toggleSubSound() {
-            soundEnabled = !soundEnabled;
-            const btn = document.getElementById('btn-sound-toggle');
-            const label = document.getElementById('sound-label');
-            if (soundEnabled) {
-                btn.classList.add('active');
-                label.innerText = 'Ovoz: Yoqiq';
-                playSubChime();
-                showToast("Jonli bildirishnoma ovozi yoqildi 🔔");
-            } else {
-                btn.classList.remove('active');
-                label.innerText = 'Ovoz: O\'chiq';
-                showToast("Ovoz o'chirildi 🔕");
-            }
-        }
-
-        function triggerPlusOneEffect() {
-            const host = document.getElementById('floating-bubble-host');
-            if (!host) return;
-            const bubble = document.createElement('div');
-            bubble.className = 'floating-sub-pulse';
-            bubble.innerHTML = '<i class="fa-solid fa-arrow-up"></i> +1 OBUNACHI';
-            host.appendChild(bubble);
-            setTimeout(() => { bubble.remove(); }, 1900);
-        }
-
-        function toggleObsFullscreen() {
-            const overlay = document.getElementById('obs-overlay');
-            if (!overlay) return;
-            overlay.classList.toggle('active');
-            if (overlay.classList.contains('active')) {
-                setOdometer('obs-odometer-digits', liveSubCount);
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen().catch(() => {});
-                }
-            } else {
-                if (document.exitFullscreen && document.fullscreenElement) {
-                    document.exitFullscreen().catch(() => {});
-                }
+        function closeModalOnBackdrop(e) {
+            if (e.target.id === 'cinema-modal') {
+                closeCinemaModal();
             }
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const overlay = document.getElementById('obs-overlay');
-                if (overlay && overlay.classList.contains('active')) {
-                    toggleObsFullscreen();
-                }
-            }
+            if (e.key === 'Escape') closeCinemaModal();
         });
 
-        // Live Real-Time Canvas Graph (Socialblade style)
-        function initLiveChart() {
-            chartCanvas = document.getElementById('live-stream-chart');
-            if (!chartCanvas) return;
-            chartCtx = chartCanvas.getContext('2d');
-            resizeChart();
-            window.addEventListener('resize', resizeChart);
-            drawChart();
-        }
-
-        function resizeChart() {
-            if (!chartCanvas) return;
-            const rect = chartCanvas.getBoundingClientRect();
-            chartCanvas.width = rect.width * (window.devicePixelRatio || 1);
-            chartCanvas.height = rect.height * (window.devicePixelRatio || 1);
-            if (chartCtx) {
-                chartCtx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+        function playSpotlightVideo() {
+            if (spotlightVideo) {
+                openCinemaModal(spotlightVideo.id, spotlightVideo.title, spotlightVideo.views, spotlightVideo.url);
             }
-            drawChart();
         }
 
-        function drawChart() {
-            if (!chartCanvas || !chartCtx) return;
-            const rect = chartCanvas.getBoundingClientRect();
-            const w = rect.width;
-            const h = rect.height;
-
-            chartCtx.clearRect(0, 0, w, h);
-
-            // Draw subtle horizontal grid lines
-            chartCtx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-            chartCtx.lineWidth = 1;
-            for (let y = 20; y < h; y += 30) {
-                chartCtx.beginPath();
-                chartCtx.moveTo(0, y);
-                chartCtx.lineTo(w, y);
-                chartCtx.stroke();
-            }
-
-            if (chartPoints.length < 2) return;
-
-            const min = Math.min(...chartPoints) - 1;
-            const max = Math.max(...chartPoints) + 2;
-            const range = (max - min) || 1;
-
-            chartCtx.beginPath();
-            chartPoints.forEach((val, i) => {
-                const x = (i / (chartPoints.length - 1)) * w;
-                const y = h - 20 - ((val - min) / range) * (h - 40);
-                if (i === 0) chartCtx.moveTo(x, y);
-                else chartCtx.lineTo(x, y);
-            });
-
-            // Line stroke
-            chartCtx.strokeStyle = '#ff0000';
-            chartCtx.lineWidth = 3;
-            chartCtx.shadowColor = '#ff4757';
-            chartCtx.shadowBlur = 8;
-            chartCtx.stroke();
-            chartCtx.shadowBlur = 0;
-
-            // Fill area under line
-            chartCtx.lineTo(w, h);
-            chartCtx.lineTo(0, h);
-            chartCtx.closePath();
-            const grad = chartCtx.createLinearGradient(0, 0, 0, h);
-            grad.addColorStop(0, 'rgba(255, 0, 0, 0.35)');
-            grad.addColorStop(1, 'rgba(255, 0, 0, 0.0)');
-            chartCtx.fillStyle = grad;
-            chartCtx.fill();
-
-            // Glowing pulse point at the latest coordinate
-            const lastVal = chartPoints[chartPoints.length - 1];
-            const lastX = w;
-            const lastY = h - 20 - ((lastVal - min) / range) * (h - 40);
-            chartCtx.beginPath();
-            chartCtx.arc(lastX, lastY, 4, 0, Math.PI * 2);
-            chartCtx.fillStyle = '#ffffff';
-            chartCtx.shadowColor = '#00ff88';
-            chartCtx.shadowBlur = 10;
-            chartCtx.fill();
-            chartCtx.shadowBlur = 0;
+        // Random Video Roller
+        function rollRandomVideo() {
+            const rand = DEFAULT_VIDEOS[Math.floor(Math.random() * DEFAULT_VIDEOS.length)];
+            openCinemaModal(rand.id, rand.title, rand.views, rand.url);
+            showToast('Tasodifiy video ochildi: "' + rand.title.substring(0, 30) + '..."');
         }
 
-        function pushChartPoint(newVal) {
-            chartPoints.push(newVal);
-            if (chartPoints.length > 25) {
-                chartPoints.shift();
-            }
-            drawChart();
+        // Toast
+        function showToast(text) {
+            const toast = document.getElementById('toast-alert');
+            const toastText = document.getElementById('toast-text');
+            if (!toast) return;
+            toastText.innerText = text;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3200);
         }
 
-        const activityFeedLog = [
-            "Yangi obunachi qo'shildi! (+1 obunachi)",
-            "'30 Kun 4:00 da uyg\'onish' videosi ko\'rildi (+14 ko\'rish)",
-            "'Zombi apokalipsisi senariysi' videosi ko\'rildi (+28 ko\'rish)",
-            "Yangi obunachi qo'shildi! (+1 obunachi)",
-            "'Ibratli hayotiy hikoya' videosi ko\'rildi (+19 ko\'rish)",
-            "Kanal o'sish dinamikasi: 100% barqaror jonli oqim",
-            "Yangi obunachi qo'shildi! (+1 obunachi)"
-        ];
-        let activityIdx = 0;
+        function onSubClick() {
+            showToast("Eshmat kanaliga obuna bo'layotganingiz uchun rahmat!");
+        }
 
-        function rotateActivityFeed(customText = null) {
-            const feed = document.getElementById('live-activity-feed');
-            const ping = document.getElementById('live-ping-meta');
-            if (!feed) return;
+        // Sync with Cloudflare Edge Serverless API (Haqiqiy YouTube ma'lumotlari)
+        async function fetchRealChannelStats() {
+            try {
+                const res = await fetch('/api/channel', { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    
+                    if (data.subscribers) {
+                        document.getElementById('stat-subs').innerText = data.subscribers;
+                    }
+                    if (data.subscribersDisplay) {
+                        document.getElementById('stat-subs-detail').innerText = data.subscribersDisplay + " ta rasmiy obunachi";
+                    }
+                    if (data.totalViews) {
+                        document.getElementById('stat-views').innerText = data.totalViews;
+                    }
+                    if (data.videoCount) {
+                        document.getElementById('stat-videos').innerText = data.videoCount + " ta";
+                    }
+                    if (data.progressPercent && data.remainingSubs) {
+                        document.getElementById('milestone-percent').innerText = data.progressPercent + "% erishildi (qoldi: " + data.remainingSubs + " ta)";
+                        document.getElementById('milestone-bar').style.width = data.progressPercent + "%";
+                    }
+                    if (data.avatarUrl) {
+                        document.getElementById('hero-avatar').src = data.avatarUrl;
+                        document.getElementById('nav-avatar').src = data.avatarUrl;
+                    }
 
-            feed.style.opacity = '0';
-            setTimeout(() => {
-                if (customText) {
-                    feed.innerHTML = customText;
-                } else {
-                    feed.innerHTML = `<i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> ${activityFeedLog[activityIdx % activityFeedLog.length]}`;
-                    activityIdx++;
+                    if (data.videos && data.videos.length > 0) {
+                        currentVideos = data.videos;
+                        spotlightVideo = data.videos[0];
+                        document.getElementById('spotlight-thumb').src = spotlightVideo.thumbnailMax || spotlightVideo.thumbnail;
+                        document.getElementById('spotlight-title').innerText = spotlightVideo.title;
+                        document.getElementById('spotlight-views').innerText = spotlightVideo.views;
+                        renderVideosGrid();
+                    }
                 }
-                feed.style.opacity = '1';
-                if (ping) {
-                    const ms = Math.floor(Math.random() * 15) + 16;
-                    ping.innerHTML = `<i class="fa-solid fa-wifi"></i> ${ms}ms`;
+            } catch(e) {
+                console.log("Offline or static mode:", e);
+            }
+        }
+
+        // Visitor counter
+        async function recordVisitor() {
+            let base = 3492;
+            let stored = parseInt(localStorage.getItem('eshmat_site_visits') || '0');
+            if (stored < base) stored = base;
+
+            if (!sessionStorage.getItem('eshmat_session_active')) {
+                stored += 1;
+                sessionStorage.setItem('eshmat_session_active', '1');
+            }
+            localStorage.setItem('eshmat_site_visits', stored);
+
+            try {
+                const res = await fetch('/api/visit');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.totalVisits && data.totalVisits > stored) {
+                        stored = data.totalVisits;
+                    }
                 }
-            }, 300);
+            } catch(e) {}
+
+            const el = document.getElementById('site-visitors-count');
+            if (el) el.innerText = stored.toLocaleString();
         }
 
-        function updateAllMetrics() {
-            // Update odometer
-            setOdometer('odometer-digits', liveSubCount);
-            setOdometer('obs-odometer-digits', liveSubCount);
+        // Initialize
+        renderVideosGrid();
+        recordVisitor();
+        fetchRealChannelStats();
 
-            // Top metric card
-            const metricSubs = document.getElementById('metric-subs');
-            if (metricSubs) {
-                metricSubs.innerText = liveSubCount.toLocaleString();
-            }
-
-            // Top views card
-            const metricViews = document.getElementById('metric-views');
-            if (metricViews) {
-                metricViews.innerText = liveViewsCount.toLocaleString() + "+";
-            }
-
-            // Milestone progress
-            const goal = 10000;
-            const remain = Math.max(0, goal - liveSubCount);
-            const pct = ((liveSubCount / goal) * 100).toFixed(2);
-
-            const remainEl = document.getElementById('studio-goal-remain');
-            if (remainEl) {
-                remainEl.innerHTML = `<i class="fa-solid fa-hourglass-half"></i> Qoldi: <b>${remain.toLocaleString()}</b>`;
-            }
-
-            const studioFill = document.getElementById('studio-progress-fill');
-            if (studioFill) {
-                studioFill.style.width = pct + '%';
-            }
-
-            const obsFill = document.getElementById('obs-goal-fill');
-            if (obsFill) {
-                obsFill.style.width = pct + '%';
-            }
-
-            const obsGoalText = document.getElementById('obs-goal-text');
-            if (obsGoalText) {
-                obsGoalText.innerText = pct + '% erishildi';
-            }
-
-            const milestoneFill = document.getElementById('milestone-progress-fill');
-            if (milestoneFill) {
-                milestoneFill.style.width = pct + '%';
-            }
-
-            const milestonePct = document.getElementById('milestone-percent-text');
-            if (milestonePct) {
-                milestonePct.innerHTML = `<i class="fa-solid fa-percent"></i> ${pct}% erishildi`;
-            }
-        }
-
-        // Initialize real-time components
-        initLiveChart();
-        updateAllMetrics();
-
-        // Real-Time Simulator Loop (Subscribers + Views micro-increments)
-        function startRealtimeEngine() {
-            // 1. Live Views micro-ticking every 2 seconds
-            setInterval(() => {
-                liveViewsCount += Math.floor(Math.random() * 3) + 1;
-                const metricViews = document.getElementById('metric-views');
-                if (metricViews) {
-                    metricViews.innerText = liveViewsCount.toLocaleString() + "+";
-                }
-            }, 2500);
-
-            // 2. Live Subscribers organic ticking every 5 - 9 seconds
-            function scheduleNextSubTick() {
-                const nextInterval = Math.floor(Math.random() * 4000) + 5000;
-                setTimeout(() => {
-                    liveSubCount += 1;
-                    updateAllMetrics();
-                    pushChartPoint(liveSubCount);
-                    triggerPlusOneEffect();
-                    playSubChime();
-                    rotateActivityFeed("<i class='fa-solid fa-user-plus' style='color: #10b981;'></i> Jonli obunachi qo'shildi! (+1 obunachi)");
-                    scheduleNextSubTick();
-                }, nextInterval);
-            }
-            scheduleNextSubTick();
-
-            // 3. Activity feed periodic updates
-            setInterval(() => {
-                rotateActivityFeed();
-            }, 4500);
-        }
-
-        startRealtimeEngine();
-
-        // Serverdan jonli tekshirish
-        syncLive();
-
-        // Har 15 soniyada fonda YouTube bilan jonli sinxronizatsiya
-        setInterval(() => {
-            syncLive();
-        }, 15000);
+        // Refresh stats periodically
+        setInterval(fetchRealChannelStats, 30000);
     </script>
 </body>
 </html>
