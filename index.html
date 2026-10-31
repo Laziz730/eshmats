@@ -242,11 +242,24 @@
         }
 
         .dot-green {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             background: #10b981;
             border-radius: var(--radius-full);
             box-shadow: 0 0 8px #10b981;
+            animation: pulseLiveDot 1.8s infinite;
+        }
+
+        @keyframes pulseLiveDot {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .metric-card.updated {
+            border-color: #10b981 !important;
+            box-shadow: 0 0 22px rgba(16, 185, 129, 0.35) !important;
+            transition: all 0.4s ease;
         }
 
         .hero-avatar-wrap {
@@ -1084,8 +1097,9 @@
         <section class="hero-section">
             <div class="status-pill" id="sync-status-pill" onclick="fetchRealChannelStats(true)" style="cursor: pointer;" title="YouTube bilan qayta sinxronlash">
                 <span class="dot-green"></span>
-                <span>Rasmiy YouTube Kanali &bull; Jonli Sinxronlashgan</span>
-                <i class="fa-solid fa-arrows-rotate" id="sync-spin-icon" style="font-size: 11px; margin-left: 4px; opacity: 0.8;"></i>
+                <span>Rasmiy YouTube Kanali &bull; Avtomatik Jonli Yangilanmoqda</span>
+                <span id="sync-live-clock" style="color: #6ee7b7; font-size: 11px; margin-left: 2px;">• jonli</span>
+                <i class="fa-solid fa-arrows-rotate" id="sync-spin-icon" style="font-size: 11px; margin-left: 4px; opacity: 0.7;"></i>
             </div>
 
             <div class="hero-avatar-wrap">
@@ -1131,7 +1145,7 @@
                     <div class="metric-subtext" id="stat-subs-detail">6,190+ ta rasmiy obunachi</div>
                 </div>
 
-                <div class="metric-card">
+                <div class="metric-card" id="card-views">
                     <div class="metric-icon icon-blue">
                         <i class="fa-solid fa-eye"></i>
                     </div>
@@ -1669,10 +1683,35 @@
             showToast("Eshmat kanaliga obuna bo'layotganingiz uchun rahmat!");
         }
 
-        // Sync with Cloudflare Edge Serverless API (Haqiqiy YouTube ma'lumotlari)
+        let currentViewsNum = 1379136;
+        let isInitialLoad = true;
+
+        // Smooth automatic count-up animation on load & update
+        function animateCounter(elId, start, end, duration = 1200) {
+            const el = document.getElementById(elId);
+            if (!el) return;
+            const startTime = performance.now();
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (end - start) * ease);
+                el.innerText = current.toLocaleString();
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    el.innerText = end.toLocaleString();
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Automatic live synchronization directly with YouTube
         async function fetchRealChannelStats(manual = false) {
             const spinIcon = document.getElementById('sync-spin-icon');
             const btnSpinIcon = document.getElementById('btn-sync-icon');
+            const clockEl = document.getElementById('sync-live-clock');
+
             if (manual) {
                 if (spinIcon) spinIcon.classList.add('fa-spin');
                 if (btnSpinIcon) btnSpinIcon.classList.add('fa-spin');
@@ -1683,27 +1722,49 @@
                 if (res.ok) {
                     const data = await res.json();
                     
+                    // 1. Subscribers
                     if (data.subscribers) {
                         document.getElementById('stat-subs').innerText = data.subscribers;
                     }
                     if (data.subscribersDisplay) {
                         document.getElementById('stat-subs-detail').innerText = data.subscribersDisplay + " ta rasmiy obunachi";
                     }
-                    if (data.totalViews) {
-                        document.getElementById('stat-views').innerText = data.totalViews;
+
+                    // 2. Views with smooth automatic animation
+                    const newViews = data.totalViewsNum || parseInt((data.totalViews || '').replace(/,/g, '')) || 1379136;
+                    const viewsCard = document.getElementById('card-views');
+
+                    if (isInitialLoad) {
+                        animateCounter('stat-views', Math.max(0, newViews - 35000), newViews, 1300);
+                    } else if (newViews !== currentViewsNum) {
+                        if (viewsCard) {
+                            viewsCard.classList.add('updated');
+                            setTimeout(() => viewsCard.classList.remove('updated'), 1500);
+                        }
+                        animateCounter('stat-views', currentViewsNum, newViews, 800);
+                    } else {
+                        document.getElementById('stat-views').innerText = newViews.toLocaleString();
                     }
+                    currentViewsNum = newViews;
+
+                    // 3. Videos count
                     if (data.videoCount) {
                         document.getElementById('stat-videos').innerText = data.videoCount + " ta";
                     }
+
+                    // 4. Milestone progress
                     if (data.progressPercent && data.remainingSubs) {
                         document.getElementById('milestone-percent').innerText = data.progressPercent + "% erishildi (qoldi: " + data.remainingSubs + " ta)";
                         document.getElementById('milestone-bar').style.width = data.progressPercent + "%";
                     }
+
+                    // 5. Avatar
                     if (data.avatarUrl) {
                         document.getElementById('hero-avatar').src = data.avatarUrl;
                         document.getElementById('nav-avatar').src = data.avatarUrl;
                     }
 
+                    // 6. Videos list & Spotlight
                     if (data.videos && data.videos.length > 0) {
                         currentVideos = data.videos;
                         spotlightVideo = data.videos[0];
@@ -1713,6 +1774,13 @@
                         renderVideosGrid();
                     }
 
+                    // Update live clock
+                    if (clockEl) {
+                        const now = new Date();
+                        const timeStr = now.toLocaleTimeString('uz-UZ');
+                        clockEl.innerText = "• " + timeStr + " (jonli)";
+                    }
+
                     if (manual) {
                         showToast("YouTube bilan 100% qayta sinxronlandi!");
                     }
@@ -1720,6 +1788,7 @@
             } catch(e) {
                 console.log("Offline or static mode:", e);
             } finally {
+                isInitialLoad = false;
                 if (manual) {
                     setTimeout(() => {
                         if (spinIcon) spinIcon.classList.remove('fa-spin');
@@ -1761,7 +1830,7 @@
         fetchRealChannelStats();
 
         // Refresh stats periodically
-        setInterval(fetchRealChannelStats, 15000);
+        setInterval(fetchRealChannelStats, 6000);
     </script>
 </body>
 </html>
