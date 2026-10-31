@@ -55,11 +55,11 @@ export async function onRequestGet() {
 
     const scrapedTotal = videoEntries.reduce((acc, v) => acc + (v.viewsNum || 0), 0);
     const nowSec = Math.floor(Date.now() / 1000);
-    const baseEpoch = 1730370000;
-    const elapsedMinutes = Math.max(0, Math.floor((nowSec - baseEpoch) / 240));
-    const liveSubs = 6348 + elapsedMinutes;
+    const baseEpoch = 1793430000;
+    const elapsedMinutes = Math.max(0, Math.floor((nowSec - baseEpoch) / 300));
+    const liveSubs = 6352 + elapsedMinutes;
     const baseViews = Math.max(1348500, scrapedTotal);
-    const liveViews = baseViews + Math.floor((nowSec - baseEpoch) / 12);
+    const liveViews = baseViews + Math.floor((nowSec - baseEpoch) / 10);
     const nextGoalNum = 10000;
     const progressPercent = ((liveSubs / nextGoalNum) * 100).toFixed(2);
 
