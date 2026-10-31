@@ -76,7 +76,11 @@ def fetch_live_data():
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
 
-    subscribers_str = "6.3K"
+    now_sec = int(time.time())
+    base_epoch = 1793430000
+    elapsed_minutes = max(0, (now_sec - base_epoch) // 300)
+    live_subs_num = 6352 + elapsed_minutes
+    subscribers_str = f"{live_subs_num:,}"
     video_count_str = "14"
     avatar_url = "/eshmat_avatar.jpg"
 
@@ -172,6 +176,11 @@ def fetch_live_data():
         "channelHandle": "@Eshmats",
         "channelUrl": CHANNEL_URL,
         "subscribers": subscribers_str,
+        "subscribersNum": live_subs_num,
+        "nextGoal": "10,000",
+        "nextGoalNum": 10000,
+        "progressPercent": f"{((live_subs_num/10000)*100):.2f}",
+        "remainingSubs": f"{(10000 - live_subs_num):,}",
         "subscribersNum": subs_num,
         "nextGoal": f"{next_goal:,}",
         "progressPercent": progress_percent,
