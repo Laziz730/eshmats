@@ -217,8 +217,13 @@
         /* HERO */
         .hero-section {
             padding: 56px 0 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             position: relative;
+            width: 100%;
         }
 
         .status-pill {
@@ -233,7 +238,7 @@
             font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.3px;
-            margin-bottom: 22px;
+            margin: 0 auto 22px auto;
         }
 
         .dot-green {
@@ -246,33 +251,44 @@
 
         .hero-avatar-wrap {
             position: relative;
-            display: inline-block;
-            margin-bottom: 18px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
         }
 
         .hero-avatar {
-            width: 104px;
-            height: 104px;
+            width: 154px;
+            height: 154px;
             border-radius: var(--radius-full);
             object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            display: block;
+            margin: 0 auto;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 0, 51, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-avatar:hover {
+            transform: scale(1.03);
         }
 
         .hero-avatar-badge {
             position: absolute;
-            bottom: 3px;
-            right: 3px;
+            bottom: 6px;
+            right: 8px;
             background: var(--yt-red);
             color: #fff;
-            width: 26px;
-            height: 26px;
+            width: 32px;
+            height: 32px;
             border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            border: 2px solid var(--bg-base);
+            font-size: 14px;
+            border: 3px solid var(--bg-base);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .hero-title {
@@ -1016,6 +1032,10 @@
         }
 
         @media (max-width: 640px) {
+            .hero-avatar {
+                width: 130px;
+                height: 130px;
+            }
             .nav-menu {
                 display: none;
             }
