@@ -129,7 +129,7 @@ export async function onRequestGet() {
     return new Response(JSON.stringify(data), {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control": "public, max-age=15, stale-while-revalidate=30",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
         "Access-Control-Allow-Origin": "*"
       }
     });

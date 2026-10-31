@@ -1082,9 +1082,10 @@
         
         <!-- Hero Section -->
         <section class="hero-section">
-            <div class="status-pill">
+            <div class="status-pill" id="sync-status-pill" onclick="fetchRealChannelStats(true)" style="cursor: pointer;" title="YouTube bilan qayta sinxronlash">
                 <span class="dot-green"></span>
                 <span>Rasmiy YouTube Kanali &bull; Jonli Sinxronlashgan</span>
+                <i class="fa-solid fa-arrows-rotate" id="sync-spin-icon" style="font-size: 11px; margin-left: 4px; opacity: 0.8;"></i>
             </div>
 
             <div class="hero-avatar-wrap">
@@ -1113,6 +1114,9 @@
                 </a>
                 <button onclick="rollRandomVideo()" class="btn btn-secondary">
                     <i class="fa-solid fa-dice-d20"></i> Tasodifiy Video
+                </button>
+                <button onclick="fetchRealChannelStats(true)" class="btn btn-secondary" title="YouTube bilan qayta sinxronlash">
+                    <i class="fa-solid fa-arrows-rotate" id="btn-sync-icon"></i> Yangilash
                 </button>
             </div>
 
@@ -1666,7 +1670,14 @@
         }
 
         // Sync with Cloudflare Edge Serverless API (Haqiqiy YouTube ma'lumotlari)
-        async function fetchRealChannelStats() {
+        async function fetchRealChannelStats(manual = false) {
+            const spinIcon = document.getElementById('sync-spin-icon');
+            const btnSpinIcon = document.getElementById('btn-sync-icon');
+            if (manual) {
+                if (spinIcon) spinIcon.classList.add('fa-spin');
+                if (btnSpinIcon) btnSpinIcon.classList.add('fa-spin');
+            }
+
             try {
                 const res = await fetch('/api/channel', { cache: 'no-store' });
                 if (res.ok) {
@@ -1701,9 +1712,20 @@
                         document.getElementById('spotlight-views').innerText = spotlightVideo.views;
                         renderVideosGrid();
                     }
+
+                    if (manual) {
+                        showToast("YouTube bilan 100% qayta sinxronlandi!");
+                    }
                 }
             } catch(e) {
                 console.log("Offline or static mode:", e);
+            } finally {
+                if (manual) {
+                    setTimeout(() => {
+                        if (spinIcon) spinIcon.classList.remove('fa-spin');
+                        if (btnSpinIcon) btnSpinIcon.classList.remove('fa-spin');
+                    }, 600);
+                }
             }
         }
 
@@ -1739,7 +1761,7 @@
         fetchRealChannelStats();
 
         // Refresh stats periodically
-        setInterval(fetchRealChannelStats, 30000);
+        setInterval(fetchRealChannelStats, 15000);
     </script>
 </body>
 </html>
